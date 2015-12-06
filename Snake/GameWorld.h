@@ -6,8 +6,8 @@ class GameWorld
 public:
 	GameWorld();
 	~GameWorld();
-	GameWorld & operator<< (char);
-	operator bool() const;
+	GameWorld & operator<< (char);            // keyboard stream reading
+	operator bool() const;                    // returns false to terminate
 private:
 
 };

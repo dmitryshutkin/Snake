@@ -20,13 +20,13 @@ int main()
 	// Cycle with
 	// game world drawing
 	// keyboard inquire 
-	// exit situation
+	// until exit situation
 
 	GameWorld gameWorld;
 
 	char ch = 0;
 
-	while (cin.get(ch) && gameWorld << ch) 
+	while (cin.get(ch) && gameWorld << ch);
 
 	
 	cout << "Temporary version return code is -1" << endl;
