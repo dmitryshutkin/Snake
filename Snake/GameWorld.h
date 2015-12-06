@@ -7,7 +7,7 @@ public:
 	GameWorld();
 	~GameWorld();
 	GameWorld & operator<< (char);            // keyboard stream reading
-	operator bool() const;                    // returns false to terminate
+	operator bool() const;                    // returns false to exit program
 private:
 
 };
