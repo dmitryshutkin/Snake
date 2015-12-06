@@ -6,9 +6,10 @@ class GameWorld
 public:
 	GameWorld();
 	~GameWorld();
-	GameWorld & operator<< (char);            // keyboard stream reading
-	operator bool() const;                    // returns false to exit program
+	GameWorld & operator<< (int);             // keyboard stream reading
+	bool operator() ();                       // Game step, returns false to exit program
 private:
+	bool State = true;                        // Python is alive 
 
 };
 

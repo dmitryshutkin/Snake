@@ -2,6 +2,7 @@
 #include "GameWorld.h"
 
 #include <iostream>
+#include <conio.h>
 
 
 using std::cout;
@@ -17,18 +18,18 @@ int main()
 	if (system("cls")) system("clear");
 	
 
-
 	// Create the World!!!
 	GameWorld gameWorld;
 
 	// Loop send keyboard messages into the World
-	char ch = 0;
-	while (cin.get(ch) && gameWorld << ch);
-
-
+	do {
+		if (_kbhit())
+			gameWorld << _getch();
+	} while (gameWorld());
 
 	// Completion
-	cout << "Temporary version return code is -1" << endl;
+	cout << "\nTemporary version return code is -1" << endl;
+	_getch();
 	return -1;
 	
 }
