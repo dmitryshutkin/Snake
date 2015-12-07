@@ -1,4 +1,4 @@
-#ifndef Border_h__
+﻿#ifndef Border_h__
 #define Border_h__
 
 class Border
