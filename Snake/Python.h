@@ -9,15 +9,15 @@ class Python
 public:
     Python();
     void draw();
-    void virtualMove();
+    void next();
     void up();
     void right();
     void down();
     void left();
     bool selfEating();
     size_t x = 15, y = 15;
-private:
     int dx = 0, dy = 1;
+private:
 
     friend bool operator==(const Fruit &, const Python &);
     friend bool operator!=(const Fruit &, const Python &);

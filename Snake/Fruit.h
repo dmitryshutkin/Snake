@@ -16,6 +16,8 @@ public:
     friend bool operator==(const Python &, const Fruit &);
     friend bool operator!=(const Python &, const Fruit &);
 
+    void next();
+
 };
 
 

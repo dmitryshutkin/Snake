@@ -10,7 +10,7 @@ void Python::draw()
 
 }
 
-void Python::virtualMove()
+void Python::next()
 {
     x += dx;
     y += dy;

@@ -3,13 +3,16 @@
 
 #include <iostream>
 
+
 using namespace std;
+
+
+
 
 
 GameWorld::GameWorld()
 {	
 }
-
 
 
 
@@ -40,6 +43,8 @@ GameWorld & GameWorld::operator<<(int ch)
     return *this;
 }
 
+
+
 bool GameWorld::operator()()
 {
     if (Alive)
@@ -50,61 +55,70 @@ bool GameWorld::operator()()
         if (system("cls")) system("clear");
 
         // Redraw the World
-        redraw();
+        canvas.redraw();
 
         // Move Python virtually
-        python.virtualMove();         
+        python.next();    
 
         // Game situation analysis
         // Check for a border touch 
         if (python.x <= 0 || python.y <= 0 || python.x >= sizeX || python.y >= sizeY)
-            Alive = false;
+        {
+            #ifdef DEBUG
+                if (python.x <= 0)
+                {
+	                python.right();
+                    // --python.x;
+                }
+                else if (python.y <= 0)
+                {
+	                python.down();
+                }
+                else if (python.x >= sizeX)
+                {
+	                python.left();
+                }
+                else if (python.y >= sizeY)
+                {
+                    python.up();
+                }
+            #elif
+                Alive = false;
+            #endif // DEBUG
+        }
             // Check for a self touch
             else if (python.selfEating())
                 Alive = false;
                 // Check for a fruit eating
                 else if (python == fruit)
-                    ++score;
+                {
+	                ++score;
+                    fruit.next();
+                    canvas.rearrangeFruit();
+                }
+
+        // Rearrange cells array
+        canvas.rearrangePython();
     }
-    else
+    else   
     {
-        // Clear screen for Windows and Linux versions
-        // if (system("cls")) system("clear");
+        //x Clear screen for Windows and Linux versions
+        //x if (system("cls")) system("clear");
         cout << 
-            "\n" "!!!!!!!!!!!!!!!!!!!!!" 
-            "\n" "!!!   Game Over   !!!" 
-            "\n" "!!!!!!!!!!!!!!!!!!!!!" 
+            "\n" "!!!!!!!!!!!!!!!!!!!!!!!" 
+            "\n" "!!!    Game Over    !!!" 
+            "\n" "!!!!!!!!!!!!!!!!!!!!!!!" 
             << endl;
     }
     return Alive;
 }
+
+
 
 GameWorld::operator bool() const
 {
     return Alive;
 }
 
-void GameWorld::redraw()
-{
-    // Drawing
-    size_t i;
-    // Top
-    for (i = 0; i < sizeX; ++i)
-        cout << '#';
-    cout << endl;
-    // Sides
-    for (size_t j = 1; j < sizeY - 1; ++j)
-    {
-        cout << '#';
-        // Draw the field with Python
-        for (i = 1; i < sizeX - 1; ++i)
-            cout << ' '; // P[i][j];
-        cout << '#';
-        cout << endl;
-    }
-    // Bottom
-    for (i = 0; i < sizeX; ++i)
-        cout << '#';
-    cout << endl;
 
-}
+
