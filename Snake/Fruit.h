@@ -1,17 +1,23 @@
 ﻿#ifndef Fruit_h__
 #define Fruit_h__
-#include "Python.h"
+// #include "Python.h"
 
+class Python;
 
 class Fruit
 {
 public:
-	size_t x, y;
-	friend bool operator==(const Fruit& left, const Python& right);
-	friend bool operator==(const Python& left, const Fruit& right);
+    size_t x = 15;
+    size_t y = 15;
 
-	
+    friend bool operator==(const Fruit &, const Python &);
+    friend bool operator!=(const Fruit &, const Python &);
+
+    friend bool operator==(const Python &, const Fruit &);
+    friend bool operator!=(const Python &, const Fruit &);
+
 };
+
 
 
 #endif // Fruit_h__
