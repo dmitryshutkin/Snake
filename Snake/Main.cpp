@@ -14,22 +14,21 @@ int main()
 {
 	// Russian language 
 	setlocale(LC_ALL, "Russian");
+
 	// Clear screen for Windows and Linux versions
-	if (system("cls")) system("clear");
-	
+	if (system("cls")) system("clear");	
 
 	// Create the World!!!
 	GameWorld gameWorld;
 
-	// Loop send keyboard messages into the World
+	// Game loop, send keyboard messages into the World
 	do {
-		if (_kbhit())
-			gameWorld << _getch();
-	} while (gameWorld());
+		if (_kbhit())                   // If any key is pressed
+			gameWorld << _getch();      // Send a message from console into the Game World
+	} while (gameWorld());              // Do while the World state is true
 
 	// Completion
-	cout << "\nTemporary version return code is -1" << endl;
+	cout << "\n""Temporary version return code is -1" << endl;
 	_getch();
-	return -1;
-	
+	return -1;	
 }
