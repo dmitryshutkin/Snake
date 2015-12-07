@@ -23,7 +23,7 @@ int main()
 
     // Game loop, send keyboard messages into the World
     do {
-        if (_kbhit())				    // If any key is pressed
+        if (_kbhit())                   // If any key is pressed
             gameWorld << _getch();      // Send message from console into the Game World
     } while (gameWorld());              // Do while the World state is true
 
