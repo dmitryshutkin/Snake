@@ -16,7 +16,7 @@ void Canvas::redraw()
     for (i = 0; i < sizeX; ++i)
         cout << '#';
     cout << endl;
-    // Sides with the field and Pete
+    // Sides with the field and Pyt
     for (size_t j = 1; j < sizeY - 1; ++j)
     {
         // Draw border
@@ -40,7 +40,7 @@ char Canvas::interpretCell(size_t cell)
 {
     switch (cell)
     {
-    case Pete:
+    case Pyt:
         return 'O';
     case Bord:
         return '#';
@@ -52,11 +52,11 @@ char Canvas::interpretCell(size_t cell)
 
 void Canvas::rearrangePython()
 {
-    // Rearrange Pete
-    // Delete Pete
+    // Rearrange Pyt
+    // Delete Pyt
     cells[python.x - python.dx - 1][python.y - python.dy - 1] = Blank;
-    // Put Pete to a new position
-    cells[python.x - 1][python.y - 1] = Pete;
+    // Put Pyt to a new position
+    cells[python.x - 1][python.y - 1] = Pyt;
     return;
 }
 

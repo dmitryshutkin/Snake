@@ -58,7 +58,7 @@ bool GameWorld::operator()()
         canvas.redraw();
 
         // Move Python virtually
-        python.next();    
+        python.next();
 
         // Game situation analysis
         // Check for a border touch 
@@ -67,8 +67,7 @@ bool GameWorld::operator()()
             #ifdef DEBUG
                 if (python.x <= 0)
                 {
-	                python.right();
-                    // --python.x;
+	                python.right();                    
                 }
                 else if (python.y <= 0)
                 {
@@ -97,8 +96,6 @@ bool GameWorld::operator()()
                     canvas.rearrangeFruit();
                 }
 
-        // Rearrange cells array
-        canvas.rearrangePython();
     }
     else   
     {
