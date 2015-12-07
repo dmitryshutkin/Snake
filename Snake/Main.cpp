@@ -23,9 +23,9 @@ int main()
 
     // Game loop, send keyboard messages into the World
     do {
-        if (_kbhit())					// If any key is pressed
-            gameWorld << _getch();		// Send message from console into the Game World
-    } while (gameWorld());				// Do while the World state is true
+        if (_kbhit())				    // If any key is pressed
+            gameWorld << _getch();      // Send message from console into the Game World
+    } while (gameWorld());              // Do while the World state is true
 
     // Completion
     cout << "\n""Temporary version return code is -1" << endl;
