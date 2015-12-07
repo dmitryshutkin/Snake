@@ -18,9 +18,9 @@ GameWorld::GameWorld()
 
 GameWorld & GameWorld::operator<<(int ch)
 {
-    if (Alive)
+    if (python.getAlive())
         if (ch == ESC)
-            Alive = false;
+            python.die;
         else
         {
             // Change the Python direction
@@ -47,7 +47,7 @@ GameWorld & GameWorld::operator<<(int ch)
 
 bool GameWorld::operator()()
 {
-    if (Alive)
+    if (python.getAlive())
     {
         // Game step
 
@@ -57,44 +57,11 @@ bool GameWorld::operator()()
         // Redraw the World
         canvas.redraw();
 
-        // Move Python virtually
-        python.next();
+        // Check for a border touch, self eating, fruit eating
+        if (gameSituationAnalysis())
+            python.next();
+        else python.die();
 
-        // Game situation analysis
-        // Check for a border touch 
-        if (python.x <= 0 || python.y <= 0 || python.x >= sizeX || python.y >= sizeY)
-        {
-            #ifdef DEBUG
-                if (python.x <= 0)
-                {
-	                python.right();                    
-                }
-                else if (python.y <= 0)
-                {
-	                python.down();
-                }
-                else if (python.x >= sizeX)
-                {
-	                python.left();
-                }
-                else if (python.y >= sizeY)
-                {
-                    python.up();
-                }
-            #elif
-                Alive = false;
-            #endif // DEBUG
-        }
-            // Check for a self touch
-            else if (python.selfEating())
-                Alive = false;
-                // Check for a fruit eating
-                else if (python == fruit)
-                {
-	                ++score;
-                    fruit.next();
-                    canvas.rearrangeFruit();
-                }
 
     }
     else   
@@ -107,14 +74,55 @@ bool GameWorld::operator()()
             "\n" "!!!!!!!!!!!!!!!!!!!!!!!" 
             << endl;
     }
-    return Alive;
+    return python.getAlive();
 }
 
 
 
+bool GameWorld::gameSituationAnalysis()
+{
+    // Game situation analysis
+
+    // Check for a border touch
+    if (python.x <= 0 || python.y <= 0 || python.x >= sizeX || python.y >= sizeY)
+    {
+        //#ifdef DEBUG
+        //if (python.x <= 0)
+        //{
+        //    python.right();
+        //}
+        //else if (python.y <= 0)
+        //{
+        //    python.down();
+        //}
+        //else if (python.x >= sizeX)
+        //{
+        //    python.left();
+        //}
+        //else if (python.y >= sizeY)
+        //{
+        //    python.up();
+        //}
+        //#elif
+            python.die();
+        //#endif // DEBUG
+    }
+    // Check for a self touch
+    else if (python.selfEating())
+        python.die();
+    // Check for a fruit eating
+    else if (python == fruit)
+    {
+        ++score;
+        fruit.next();
+        canvas.rearrangeFruit();
+    }
+    return python.getAlive();
+}
+
 GameWorld::operator bool() const
 {
-    return Alive;
+    return python.getAlive();
 }
 
 

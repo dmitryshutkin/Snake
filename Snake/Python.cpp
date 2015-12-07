@@ -47,3 +47,8 @@ bool Python::selfEating()
     return false;
 }
 
+void Python::die()
+{
+    alive = false;
+}
+

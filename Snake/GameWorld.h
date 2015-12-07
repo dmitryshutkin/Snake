@@ -13,18 +13,19 @@ class GameWorld
 {
 public:
     GameWorld();	
+
     GameWorld & operator<< (int);             // keyboard stream reading
     bool operator() ();                       // Game step, returns false to exit the program 
+
+    bool gameSituationAnalysis(); 
+
     operator bool() const;                    // returns false to exit the program
 private:
-    bool Alive = true;                        // Python is alive
-    Border border;
     Python python;                            // By the way, his name is Pete
     Fruit fruit;
-    Canvas canvas;
     size_t score = 0;
+    Canvas canvas;
 };
-
 
 
 enum VKey { UP = 72, LEFT = 75, RIGHT = 77, DOWN = 80, F12 = 134, ESC = 27, ENTER = 13 };
