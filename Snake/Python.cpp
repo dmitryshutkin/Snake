@@ -1,14 +1,7 @@
 ﻿#include "Python.h"
 
-Python::Python()
-{
 
-}
 
-void Python::draw()
-{
-
-}
 
 void Python::next()
 {
@@ -16,11 +9,15 @@ void Python::next()
     y += dy;
 }
 
+
+
 void Python::up()
 {
     dx = 0;
     dy = -1;
 }
+
+
 
 void Python::right()
 {
@@ -28,11 +25,14 @@ void Python::right()
     dy = 0;
 }
 
+
+
 void Python::down()
 {
     dx = 0;
     dy = 1;
 }
+
 
 
 void Python::left()
@@ -42,10 +42,14 @@ void Python::left()
 
 }
 
+
+
 bool Python::selfEating()
 {
     return false;
 }
+
+
 
 void Python::die()
 {

@@ -1,66 +1,68 @@
 #include "Canvas.h"
+#include <iostream>
+
+
+using namespace std;
+
+
 
 Canvas::Canvas()
 {
-    for (int j = 0; j < sizeY - 2; ++j)
-        for (int i = 0; i < sizeX - 2; ++i)
-            cells[i][j] = Blank;
+    for (int j = 0; j < sizeY; ++j)
+        for (int i = 0; i < sizeX; ++i)
+            cells[i][j] = BLANK;
 
 }
 
-void Canvas::redraw()
+
+
+void Canvas::draw()
 {
     // Drawing
-    size_t i;
+    int i;
     // Top
-    for (i = 0; i < sizeX; ++i)
+    for (i = 0; i < sizeX + 2; ++i)
         cout << '#';
     cout << endl;
-    // Sides with the field and Pyt
-    for (size_t j = 1; j < sizeY - 1; ++j)
+    // Sides with the field and Pyth
+    for (int j = 0; j < sizeY; ++j)
     {
         // Draw border
         cout << '#';
         // Draw the line with field and Python parts
-        for (i = 0; i < sizeX - 2; ++i)
-            cout << interpretCell(cells[i][j - 1]);
+        for (i = 0; i < sizeX; ++i)
+            cout << interpretCell(cells[i][j]);
         // Draw border
         cout << '#';
         // Next line
         cout << endl;
     }
     // Bottom
-    for (i = 0; i < sizeX; ++i)
+    for (i = 0; i < sizeX + 2; ++i)
         cout << '#';
     cout << endl;
 
 }
 
-char Canvas::interpretCell(size_t cell)
+
+
+int & Canvas::operator()(int x, int y)
 {
-    switch (cell)
-    {
-    case Pyt:
-        return 'O';
-    case Bord:
-        return '#';
-    case Fruit:
+    return cells[x][y];
+}
+
+
+
+char Canvas::interpretCell(int cell)
+{
+    if (cell == BLANK)
+        return ' ';
+    else if (cell == PYTH)
+        return '@';
+    else if (cell == FRUIT)
         return 'F';
-    }
-    return ' ';
+    return 'x';
 }
 
-void Canvas::rearrangePython()
-{
-    // Rearrange Pyt
-    // Delete Pyt
-    cells[python.x - python.dx - 1][python.y - python.dy - 1] = Blank;
-    // Put Pyt to a new position
-    cells[python.x - 1][python.y - 1] = Pyt;
-    return;
-}
 
-void Canvas::rearrangeFruit()
-{
-    return;
-}
+

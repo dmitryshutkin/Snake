@@ -1,5 +1,4 @@
-﻿#include "Main.h"
-#include "GameWorld.h"
+﻿#include "GameWorld.h"
 
 #include <iostream>
 
@@ -7,11 +6,13 @@
 using namespace std;
 
 
-
+enum VKey { UP = 72, LEFT = 75, RIGHT = 77, DOWN = 80, F12 = 134, ESC = 27, ENTER = 13 };
 
 
 GameWorld::GameWorld()
 {	
+    setFruitToCanv();
+    setPythToCanv();
 }
 
 
@@ -20,7 +21,7 @@ GameWorld & GameWorld::operator<<(int ch)
 {
     if (python.getAlive())
         if (ch == ESC)
-            python.die;
+            python.die();
         else
         {
             // Change the Python direction
@@ -55,24 +56,20 @@ bool GameWorld::operator()()
         if (system("cls")) system("clear");
 
         // Redraw the World
-        canvas.redraw();
+        canvas.draw();
+
+        #ifdef DEBUG
+            cout << "\n""X: " << python.x << "  Y: " << python.y << "          dx: " << python.dx << "  dy: " << python.dy << endl;
+        #endif // DEBUG
+
 
         // Check for a border touch, self eating, fruit eating
         if (gameSituationAnalysis())
+        {
             python.next();
+            movePythonCanv();            
+        }            
         else python.die();
-
-
-    }
-    else   
-    {
-        //x Clear screen for Windows and Linux versions
-        //x if (system("cls")) system("clear");
-        cout << 
-            "\n" "!!!!!!!!!!!!!!!!!!!!!!!" 
-            "\n" "!!!    Game Over    !!!" 
-            "\n" "!!!!!!!!!!!!!!!!!!!!!!!" 
-            << endl;
     }
     return python.getAlive();
 }
@@ -84,29 +81,21 @@ bool GameWorld::gameSituationAnalysis()
     // Game situation analysis
 
     // Check for a border touch
-    if (python.x <= 0 || python.y <= 0 || python.x >= sizeX || python.y >= sizeY)
-    {
-        //#ifdef DEBUG
-        //if (python.x <= 0)
-        //{
-        //    python.right();
-        //}
-        //else if (python.y <= 0)
-        //{
-        //    python.down();
-        //}
-        //else if (python.x >= sizeX)
-        //{
-        //    python.left();
-        //}
-        //else if (python.y >= sizeY)
-        //{
-        //    python.up();
-        //}
-        //#elif
+    #ifdef DEBUG
+        if (python.x <= 0)
+            python.right();
+        else if (python.y <= 0)
+            python.down();
+        else if (python.x >= sizeX)
+            python.left();
+        else if (python.y >= sizeY)
+            python.up();
+
+    #else
+        if (python.x <= 0 || python.y <= 0 || python.x >= sizeX || python.y >= sizeY)
             python.die();
-        //#endif // DEBUG
-    }
+    #endif // DEBUG
+
     // Check for a self touch
     else if (python.selfEating())
         python.die();
@@ -114,11 +103,35 @@ bool GameWorld::gameSituationAnalysis()
     else if (python == fruit)
     {
         ++score;
-        fruit.next();
-        canvas.rearrangeFruit();
+        fruit.newFr();
+        setFruitToCanv();
     }
     return python.getAlive();
 }
+
+
+
+void GameWorld::movePythonCanv()
+{
+    canvas(python.x - python.dx, python.y - python.dy) = BLANK;
+    setPythToCanv();
+}
+
+
+
+void GameWorld::setPythToCanv()
+{
+    canvas(python.x, python.y) = PYTH;
+}
+
+
+
+void GameWorld::setFruitToCanv()
+{
+    canvas(fruit.x, fruit.y) = FRUIT;
+}
+
+
 
 GameWorld::operator bool() const
 {
