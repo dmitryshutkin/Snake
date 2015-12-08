@@ -1,15 +1,21 @@
 ﻿#ifndef Fruit_h__
 #define Fruit_h__
-// #include "Python.h"
+
+#include "MainDefinitions.h"
+
 
 class Python;
 
 class Fruit
 {
 public:
-    size_t x = 15;
-    size_t y = 15;
+    Fruit();
 
+    int x;
+    int y;
+    
+    void newFr();
+    
     friend bool operator==(const Fruit &, const Python &);
     friend bool operator!=(const Fruit &, const Python &);
 

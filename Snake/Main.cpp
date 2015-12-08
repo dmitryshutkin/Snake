@@ -1,8 +1,9 @@
-﻿#include "Main.h"
+﻿#include "MainDefinitions.h"
 #include "GameWorld.h"
 
 #include <iostream>
 #include <conio.h>
+#include <windows.h>
 
 
 using std::cout;
@@ -12,8 +13,8 @@ using std::endl;
 
 int main()
 {
-    // Russian language 
-    setlocale(LC_ALL, "Russian");
+    //x Russian language 
+    //x setlocale(LC_ALL, "Russian");
 
     // Clear screen for Windows and Linux versions
     if (system("cls")) system("clear");	
@@ -25,6 +26,7 @@ int main()
     do {
         if (_kbhit())					// If any key is pressed
             gameWorld << _getch();		// Send message from console into the Game World
+        Sleep(10);
     } while (gameWorld());				// Do while the World state is true
 
     // Completion
