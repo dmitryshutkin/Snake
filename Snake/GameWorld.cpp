@@ -83,13 +83,25 @@ bool GameWorld::gameSituationAnalysis()
     // Check for a border touch
     #ifdef DEBUG
         if (python.x <= 0)
-            python.right();
+        {
+            canvas(python.x, python.y) = BLANK;
+	        python.x = sizeX-1;
+        }
         else if (python.y <= 0)
-            python.down();
+        {
+            canvas(python.x, python.y) = BLANK;
+	        python.y = sizeY - 1;
+        }
         else if (python.x >= (sizeX-1))
-            python.left();
+        {
+            canvas(python.x, python.y) = BLANK;
+	        python.x = 0;
+        }
         else if (python.y >= (sizeY-1))
-            python.up();
+        {
+            canvas(python.x, python.y) = BLANK;
+            python.y = 0;
+        }
 
     #else
         if ((python.x <= 0) || (python.y <= 0) || (python.x >= sizeX-1) || (python.y >= sizeY-1))

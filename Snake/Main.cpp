@@ -26,7 +26,7 @@ int main()
     do {
         if (_kbhit())					// If any key is pressed
             gameWorld << _getch();		// Send message from console into the Game World
-        Sleep(200);
+        Sleep(10);
     } while (gameWorld());				// Do while the World state is true
 
     // Completion
