@@ -1,4 +1,4 @@
-﻿#include "Main.h"
+﻿#include "MainDefinitions.h"
 #include "GameWorld.h"
 
 #include <iostream>
@@ -12,8 +12,8 @@ using std::endl;
 
 int main()
 {
-    // Russian language 
-    setlocale(LC_ALL, "Russian");
+    //x Russian language 
+    //x setlocale(LC_ALL, "Russian");
 
     // Clear screen for Windows and Linux versions
     if (system("cls")) system("clear");	

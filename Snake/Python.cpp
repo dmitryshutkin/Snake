@@ -1,20 +1,15 @@
 ﻿#include "Python.h"
 
-Python::Python()
-{
 
-}
 
-void Python::draw()
-{
 
-}
-
-void Python::virtualMove()
+void Python::next()
 {
     x += dx;
     y += dy;
 }
+
+
 
 void Python::up()
 {
@@ -22,17 +17,22 @@ void Python::up()
     dy = -1;
 }
 
+
+
 void Python::right()
 {
     dx = 1;
     dy = 0;
 }
 
+
+
 void Python::down()
 {
     dx = 0;
     dy = 1;
 }
+
 
 
 void Python::left()
@@ -42,8 +42,17 @@ void Python::left()
 
 }
 
+
+
 bool Python::selfEating()
 {
     return false;
+}
+
+
+
+void Python::die()
+{
+    alive = false;
 }
 
