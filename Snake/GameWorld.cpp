@@ -59,7 +59,7 @@ bool GameWorld::operator()()
         canvas.draw();
 
         #ifdef DEBUG
-            cout << "\n""X: " << python.x << "  Y: " << python.y << "          dx: " << python.dx << "  dy: " << python.dy << endl;
+            cout << "\n""X: " << python.x << "  Y: " << python.y << "       dx: " << python.dx << "  dy: " << python.dy << endl;
         #endif // DEBUG
 
 
@@ -86,19 +86,20 @@ bool GameWorld::gameSituationAnalysis()
             python.right();
         else if (python.y <= 0)
             python.down();
-        else if (python.x >= sizeX)
+        else if (python.x >= (sizeX-1))
             python.left();
-        else if (python.y >= sizeY)
+        else if (python.y >= (sizeY-1))
             python.up();
 
     #else
-        if (python.x <= 0 || python.y <= 0 || python.x >= sizeX || python.y >= sizeY)
+        if ((python.x <= 0) || (python.y <= 0) || (python.x >= sizeX-1) || (python.y >= sizeY-1))
             python.die();
     #endif // DEBUG
 
     // Check for a self touch
     else if (python.selfEating())
         python.die();
+
     // Check for a fruit eating
     else if (python == fruit)
     {

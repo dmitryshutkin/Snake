@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <conio.h>
+#include <windows.h>
 
 
 using std::cout;
@@ -25,6 +26,7 @@ int main()
     do {
         if (_kbhit())					// If any key is pressed
             gameWorld << _getch();		// Send message from console into the Game World
+        Sleep(200);
     } while (gameWorld());				// Do while the World state is true
 
     // Completion

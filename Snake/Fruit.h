@@ -13,14 +13,14 @@ public:
 
     int x;
     int y;
-
+    
+    void newFr();
+    
     friend bool operator==(const Fruit &, const Python &);
     friend bool operator!=(const Fruit &, const Python &);
 
     friend bool operator==(const Python &, const Fruit &);
     friend bool operator!=(const Python &, const Fruit &);
-
-    void newFr();
 
 };
 

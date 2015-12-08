@@ -17,7 +17,7 @@ public:
     void down();
     void left();
     bool selfEating();
-    int x = 15, y = 15;
+    int x = sizeX / 2, y = sizeY / 2;
     int dx = 0, dy = 1;
     void die();
 
