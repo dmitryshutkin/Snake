@@ -1,4 +1,4 @@
-#include "Canvas.h"
+#include "Phisics.h"
 #include <iostream>
 
 
@@ -6,7 +6,7 @@ using namespace std;
 
 
 
-Canvas::Canvas()
+Phisics::Phisics()
 {
     for (int j = 0; j < sizeY; ++j)
         for (int i = 0; i < sizeX; ++i)
@@ -16,7 +16,7 @@ Canvas::Canvas()
 
 
 
-void Canvas::draw()
+void Phisics::draw()
 {
     // Drawing
     int i;
@@ -46,14 +46,14 @@ void Canvas::draw()
 
 
 
-int & Canvas::operator()(int x, int y)
+int & Phisics::operator()(int x, int y)
 {
     return cells[x][y];
 }
 
 
 
-char Canvas::interpretCell(int cell)
+char Phisics::interpretCell(int cell)
 {
     if (cell == BLANK)
         return ' ';

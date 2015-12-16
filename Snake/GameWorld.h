@@ -5,29 +5,30 @@
 
 #include "Python.h"
 #include "Fruit.h"
-#include "Canvas.h"
+#include "Phisics.h"
+#include "Border.h"
 
 
 
 class GameWorld
 {
 public:
-    GameWorld();	
     GameWorld & operator<< (int);             // keyboard stream reading
     bool operator() ();                       // Game step, returns false to exit the program 
     operator bool() const;                    // returns false to exit the program
 
 private:
-    Python python;                            // By the way, his name is Pete
-    Fruit fruit;
+    Border border = Border(phisics);
+    Python python = Python(phisics);          // By the way, his name is Pete
+    Fruit fruit = Fruit(phisics);
 
     int score = 0;
 
-    Canvas canvas;
+    Phisics phisics;
 
-    void setPythToCanv();
-    void setFruitToCanv();
-    void movePythonCanv();
+    void setPythonToPh();
+    void setFruitToPh();
+    void movePythonPh();
 
     bool gameSituationAnalysis();
 };

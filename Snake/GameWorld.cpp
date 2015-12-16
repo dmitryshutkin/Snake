@@ -9,11 +9,6 @@ using namespace std;
 enum VKey { UP = 72, LEFT = 75, RIGHT = 77, DOWN = 80, F12 = 134, ESC = 27, ENTER = 13 };
 
 
-GameWorld::GameWorld()
-{	
-    setFruitToCanv();
-    setPythToCanv();
-}
 
 
 
@@ -56,7 +51,7 @@ bool GameWorld::operator()()
         if (system("cls")) system("clear");
 
         // Redraw the World
-        canvas.draw();
+        phisics.draw();
 
         #ifdef DEBUG
             cout << "\n""X: " << python.x << "  Y: " << python.y << "       dx: " << python.dx << "  dy: " << python.dy << endl;
@@ -67,7 +62,7 @@ bool GameWorld::operator()()
         if (gameSituationAnalysis())
         {
             python.next();
-            movePythonCanv();            
+            movePythonPh();            
         }            
         else python.die();
     }
@@ -84,22 +79,22 @@ bool GameWorld::gameSituationAnalysis()
     #ifdef DEBUG
         if (python.x <= 0)
         {
-            canvas(python.x, python.y) = BLANK;
+            phisics(python.x, python.y) = BLANK;
 	        python.x = sizeX-1;
         }
         else if (python.y <= 0)
         {
-            canvas(python.x, python.y) = BLANK;
+            phisics(python.x, python.y) = BLANK;
 	        python.y = sizeY - 1;
         }
         else if (python.x >= (sizeX-1))
         {
-            canvas(python.x, python.y) = BLANK;
+            phisics(python.x, python.y) = BLANK;
 	        python.x = 0;
         }
         else if (python.y >= (sizeY-1))
         {
-            canvas(python.x, python.y) = BLANK;
+            phisics(python.x, python.y) = BLANK;
             python.y = 0;
         }
 
@@ -117,31 +112,30 @@ bool GameWorld::gameSituationAnalysis()
     {
         ++score;
         fruit.newFr();
-        setFruitToCanv();
     }
     return python.getAlive();
 }
 
 
 
-void GameWorld::movePythonCanv()
+void GameWorld::movePythonPh()
 {
-    canvas(python.x - python.dx, python.y - python.dy) = BLANK;
-    setPythToCanv();
+    phisics(python.x - python.dx, python.y - python.dy) = BLANK;
+    setPythonToPh();
 }
 
 
 
-void GameWorld::setPythToCanv()
+void GameWorld::setPythonToPh()
 {
-    canvas(python.x, python.y) = PYTH;
+    phisics(python.x, python.y) = PYTH;
 }
 
 
 
-void GameWorld::setFruitToCanv()
+void GameWorld::setFruitToPh()
 {
-    canvas(fruit.x, fruit.y) = FRUIT;
+    phisics(fruit.x, fruit.y) = FRUIT;
 }
 
 

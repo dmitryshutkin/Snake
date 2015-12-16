@@ -2,14 +2,16 @@
 #define Fruit_h__
 
 #include "MainDefinitions.h"
+#include "Python.h"
+#include "Phisics.h"
 
 
-class Python;
 
 class Fruit
 {
+    Phisics & phisics;
 public:
-    Fruit();
+    Fruit(Phisics & ph) : phisics(ph) { };
 
     int x;
     int y;

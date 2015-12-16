@@ -27,7 +27,7 @@
     <ClCompile Include="Fruit.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
-    <ClCompile Include="Canvas.cpp">
+    <ClCompile Include="Phisics.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
   </ItemGroup>
@@ -41,10 +41,13 @@
     <ClInclude Include="Fruit.h">
       <Filter>Заголовочные файлы</Filter>
     </ClInclude>
-    <ClInclude Include="Canvas.h">
+    <ClInclude Include="MainDefinitions.h">
       <Filter>Заголовочные файлы</Filter>
     </ClInclude>
-    <ClInclude Include="MainDefinitions.h">
+    <ClInclude Include="Border.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="Phisics.h">
       <Filter>Заголовочные файлы</Filter>
     </ClInclude>
   </ItemGroup>

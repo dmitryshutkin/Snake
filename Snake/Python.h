@@ -3,12 +3,15 @@
 
 #include "MainDefinitions.h"
 #include "Fruit.h"
+#include "Phisics.h"
 
 
 class Python
 {
-
+    Phisics & phisics;
 public:
+
+    Python(Phisics ph) : phisics(ph) { };
 
     bool getAlive() const { return alive; }
     void next();
