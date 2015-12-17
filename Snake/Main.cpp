@@ -16,7 +16,7 @@ int main()
     //x Russian language 
     //x setlocale(LC_ALL, "Russian");
 
-    // Clear screen for Windows and Linux versions
+    // Clear screen both for Windows and Linux versions
     if (system("cls")) system("clear");	
 
     // Create the World!!!
@@ -31,6 +31,7 @@ int main()
 
 
     // Completion
+    cout << "\n\nGame over!!!" << endl;
     _getch();
     return 0;	
 }
