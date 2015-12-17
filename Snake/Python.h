@@ -2,64 +2,52 @@
 #define Python_h__
 
 #include "MainDefinitions.h"
-#include "Fruit.h"
 #include "Phisics.h"
 
+#include <queue>
 
-class Python
+
+
+class PlainVector
 {
-    Phisics & phisics;
 public:
-
-    Python(Phisics ph) : phisics(ph) { };
-
-    bool getAlive() const { return alive; }
-    void next();
-    void up();
-    void right();
-    void down();
-    void left();
-    bool selfEating();
-    int x = sizeX / 2, y = sizeY / 2;
-    int dx = 0, dy = 1;
-    void die();
-
-private:
-
-    bool alive = true;                        // Python is alive
-
-    friend bool operator==(const Fruit &, const Python &);
-    friend bool operator!=(const Fruit &, const Python &);
-
-    friend bool operator==(const Python &, const Fruit &);
-    friend bool operator!=(const Python &, const Fruit &);
-
+    PlainVector(int X, int Y) :x(X), y(Y) { };
+    int x, y;
 };
 
 
 
 
-inline bool operator==(const Fruit & left, const Python & right) {
-    return (left.x == right.x) && (left.y == right.y);
-}
+class Python
+{
+    Phisics & phisics;
 
+public:
 
+    Python(Phisics & ph) : phisics(ph) { body.push(PlainVector(x, y)); };
+       
+    void toUp();
+    void toRight();
+    void toDown();
+    void toLeft();
+    
+    void moove();
+    void die();
 
-inline bool operator!=(const Fruit & left, const Python & right) {
-    return !operator==(left, right);
-}
+    bool getAlive() const { return alive; }
 
+private:
 
+    bool alive = true;                        // Python is alive
+    int length = 1;
 
-inline bool operator==(const Python & left, const Fruit & right) {
-   return operator==(right, left);
-}
+    int x = sizeX / 2, y = sizeY / 2;
+    int dx = 0, dy = 1;
 
+    std::queue<PlainVector> body;
 
+};
 
-inline bool operator!=(const Python & left, const Fruit & right) {
-    return operator!=(right, left);
-}
 
 
 #endif // Python_h__

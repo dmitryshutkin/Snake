@@ -31,7 +31,6 @@ int main()
 
 
     // Completion
-    cout << "\n""Temporary version return code is -1" << endl;
     _getch();
-    return -1;	
+    return 0;	
 }

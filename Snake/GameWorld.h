@@ -3,38 +3,24 @@
 
 #include "MainDefinitions.h"
 
-#include "Python.h"
-#include "Fruit.h"
-#include "Phisics.h"
 #include "Border.h"
+#include "Python.h"
+#include "Phisics.h"
 
 
 
 class GameWorld
 {
+    Phisics thePhisics;
+    Border theBorder = Border(thePhisics);
+    Python Pete = Python(thePhisics);         // By the way, his name is Pete
+    int score = 0;
 public:
+    GameWorld();
     GameWorld & operator<< (int);             // keyboard stream reading
     bool operator() ();                       // Game step, returns false to exit the program 
     operator bool() const;                    // returns false to exit the program
-
-private:
-    Border border = Border(phisics);
-    Python python = Python(phisics);          // By the way, his name is Pete
-    Fruit fruit = Fruit(phisics);
-
-    int score = 0;
-
-    Phisics phisics;
-
-    void setPythonToPh();
-    void setFruitToPh();
-    void movePythonPh();
-
-    bool gameSituationAnalysis();
 };
-
-
-
 
 
 

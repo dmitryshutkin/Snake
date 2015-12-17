@@ -5,18 +5,16 @@
 
 
 
-
 class Phisics 
 {
 public:
     Phisics();
     void draw();
     int & operator() (int, int);
-
+    void newFruit();
 private:
     int cells[sizeX][sizeY];
     char interpretCell(int);
-
 };
 
 
