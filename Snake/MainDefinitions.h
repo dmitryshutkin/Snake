@@ -3,11 +3,11 @@
 
 // The Main Definitions file
 
-#define DEBUG
+//#define DEBUG
 
-enum Size { sizeX = 30, sizeY = 18 };
+enum Size { sizeX = 50, sizeY = 20 };
 
-enum CellType { PYTH, BLANK, FRUIT };
+enum CellType { BLANK, BORDER, PYTHON, FRUIT };
 
 
 #endif // Main_h__

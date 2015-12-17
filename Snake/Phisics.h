@@ -1,27 +1,25 @@
-#ifndef Canvas_h__
-#define Canvas_h__
+#ifndef Phisics_h__
+#define Phisics_h__
 
 #include "MainDefinitions.h"
 
 
 
-
-class Canvas 
+class Phisics 
 {
 public:
-    Canvas();
+    Phisics();
     void draw();
     int & operator() (int, int);
-
+    void newFruit();
 private:
     int cells[sizeX][sizeY];
     char interpretCell(int);
-
 };
 
 
 
-#endif // Canvas_h__
+#endif // Phisics_h__
 
 
 

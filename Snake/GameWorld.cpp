@@ -3,41 +3,47 @@
 #include <iostream>
 
 
+
 using namespace std;
 
 
 enum VKey { UP = 72, LEFT = 75, RIGHT = 77, DOWN = 80, F12 = 134, ESC = 27, ENTER = 13 };
 
 
+
+
+
 GameWorld::GameWorld()
-{	
-    setFruitToCanv();
-    setPythToCanv();
+{
+
+    theBorder.newBorder();
+    thePhisics.newFruit();
+    thePhisics.draw();
 }
 
 
 
 GameWorld & GameWorld::operator<<(int ch)
 {
-    if (python.getAlive())
+    if (Pete.getAlive())
         if (ch == ESC)
-            python.die();
+            Pete.die();
         else
         {
             // Change the Python direction
             switch (ch)
             {
             case UP:
-                python.up();
+                Pete.toUp();
                 break;
             case RIGHT:
-                python.right();
+                Pete.toRight();
                 break;
             case DOWN:
-                python.down();
+                Pete.toDown();
                 break;
             case LEFT:
-                python.left();
+                Pete.toLeft();
                 break;
             }
         }
@@ -48,107 +54,18 @@ GameWorld & GameWorld::operator<<(int ch)
 
 bool GameWorld::operator()()
 {
-    if (python.getAlive())
-    {
-        // Game step
-
-        // Clear screen for Windows and Linux versions
-        if (system("cls")) system("clear");
-
-        // Redraw the World
-        canvas.draw();
-
-        #ifdef DEBUG
-            cout << "\n""X: " << python.x << "  Y: " << python.y << "       dx: " << python.dx << "  dy: " << python.dy << endl;
-        #endif // DEBUG
-
-
-        // Check for a border touch, self eating, fruit eating
-        if (gameSituationAnalysis())
-        {
-            python.next();
-            movePythonCanv();            
-        }            
-        else python.die();
-    }
-    return python.getAlive();
-}
-
-
-
-bool GameWorld::gameSituationAnalysis()
-{
-    // Game situation analysis
-
-    // Check for a border touch
-    #ifdef DEBUG
-        if (python.x <= 0)
-        {
-            canvas(python.x, python.y) = BLANK;
-	        python.x = sizeX-1;
-        }
-        else if (python.y <= 0)
-        {
-            canvas(python.x, python.y) = BLANK;
-	        python.y = sizeY - 1;
-        }
-        else if (python.x >= (sizeX-1))
-        {
-            canvas(python.x, python.y) = BLANK;
-	        python.x = 0;
-        }
-        else if (python.y >= (sizeY-1))
-        {
-            canvas(python.x, python.y) = BLANK;
-            python.y = 0;
-        }
-
-    #else
-        if ((python.x <= 0) || (python.y <= 0) || (python.x >= sizeX-1) || (python.y >= sizeY-1))
-            python.die();
-    #endif // DEBUG
-
-    // Check for a self touch
-    else if (python.selfEating())
-        python.die();
-
-    // Check for a fruit eating
-    else if (python == fruit)
-    {
-        ++score;
-        fruit.newFr();
-        setFruitToCanv();
-    }
-    return python.getAlive();
-}
-
-
-
-void GameWorld::movePythonCanv()
-{
-    canvas(python.x - python.dx, python.y - python.dy) = BLANK;
-    setPythToCanv();
-}
-
-
-
-void GameWorld::setPythToCanv()
-{
-    canvas(python.x, python.y) = PYTH;
-}
-
-
-
-void GameWorld::setFruitToCanv()
-{
-    canvas(fruit.x, fruit.y) = FRUIT;
+    // Game step
+    if (system("cls")) system("clear");
+    Pete.moove();
+    thePhisics.draw();
+    return Pete.getAlive();
 }
 
 
 
 GameWorld::operator bool() const
 {
-    return python.getAlive();
+    return Pete.getAlive();
 }
 
 
