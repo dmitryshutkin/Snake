@@ -2,7 +2,7 @@
 #define Python_h__
 
 #include "MainDefinitions.h"
-#include "Phisics.h"
+#include "Field.h"
 
 #include <queue>
 
@@ -20,11 +20,11 @@ public:
 
 class Python
 {
-    Phisics & phisics;
+    Field & field;
 
 public:
 
-    Python(Phisics & ph) : phisics(ph) { body.push(PlainVector(x, y)); };
+    Python(Field & fi) : field(fi) { body.push(PlainVector(x, y)); };
        
     void toUp();
     void toRight();

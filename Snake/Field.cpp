@@ -1,4 +1,4 @@
-#include "Phisics.h"
+#include "Field.h"
 #include <iostream>
 #include <ctime>
 #include <cstdlib>
@@ -8,7 +8,7 @@ using namespace std;
 
 
 
-Phisics::Phisics()
+Field::Field()
 {
     for (int j = 0; j < sizeY; ++j)
         for (int i = 0; i < sizeX; ++i)
@@ -18,7 +18,7 @@ Phisics::Phisics()
 
 
 
-void Phisics::draw()
+void Field::draw()
 {
     for (int j = 0; j < sizeY; ++j)
     {
@@ -31,14 +31,14 @@ void Phisics::draw()
 
 
 
-int & Phisics::operator()(int x, int y)
+int & Field::operator()(int x, int y)
 {
     return cells[x][y];
 }
 
 
 
-void Phisics::newFruit()
+void Field::newFruit()
 {
     static const int FruitBorder = 3;
     int x, y;
@@ -52,7 +52,7 @@ void Phisics::newFruit()
 
 
 
-char Phisics::interpretCell(int cell)
+char Field::interpretCell(int cell)
 {
     if (cell == BLANK)
         return ' ';

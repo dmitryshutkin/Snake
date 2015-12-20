@@ -1,14 +1,14 @@
-#ifndef Phisics_h__
-#define Phisics_h__
+#ifndef Field_h__
+#define Field_h__
 
 #include "MainDefinitions.h"
 
 
 
-class Phisics 
+class Field 
 {
 public:
-    Phisics();
+    Field();
     void draw();
     int & operator() (int, int);
     void newFruit();
@@ -19,7 +19,7 @@ private:
 
 
 
-#endif // Phisics_h__
+#endif // Field_h__
 
 
 

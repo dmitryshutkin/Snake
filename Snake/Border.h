@@ -1,15 +1,15 @@
 #ifndef Border_h__
 #define Border_h__
 
-#include "Phisics.h"
+#include "Field.h"
 
 
 
 class Border
 {
-    Phisics & phisics;
+    Field & field;
 public:
-    Border(Phisics & ph) : phisics(ph) { };
+    Border(Field & fi) : field(fi) { };
     void newBorder();
 };
 

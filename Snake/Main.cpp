@@ -13,25 +13,26 @@ using std::endl;
 
 int main()
 {
-    //x Russian language 
-    //x setlocale(LC_ALL, "Russian");
+    // Russian language 
+    setlocale(LC_ALL, "Russian");
 
-    // Clear screen both for Windows and Linux versions
-    if (system("cls")) system("clear");	
-
-    // Create the World!!!
-    GameWorld gameWorld;
-
-    // Game loop, send keyboard messages into the World
     do {
-        if (_kbhit())					// If any key is pressed
-            gameWorld << _getch();		// Send message from console into the Game World
-        Sleep(10);
-    } while (gameWorld());				// Do while the World state is true
+	    // Clear screen both for Windows and Linux versions
+	    if (system("cls")) system("clear");	
+	
+	    // Create the World!!!
+	    GameWorld gameWorld;
+	
+	    // Game loop, send keyboard messages into the World
+	    do {
+	        if (_kbhit())					// If any key is pressed
+	            gameWorld << _getch();		// Send message from console into the Game World
+	        Sleep(SLEEP_TIME);
+	    } while (gameWorld());				// Do while the World state is true
+		
+	    // Completion
+	    cout << "\n Esc to exit ";
+    } while (_getch() != ESC);
 
-
-    // Completion
-    cout << "\n\nGame over!!!" << endl;
-    _getch();
     return 0;	
 }

@@ -3,13 +3,7 @@
 #include <iostream>
 
 
-
 using namespace std;
-
-
-enum VKey { UP = 72, LEFT = 75, RIGHT = 77, DOWN = 80, F12 = 134, ESC = 27, ENTER = 13 };
-
-
 
 
 
@@ -17,8 +11,8 @@ GameWorld::GameWorld()
 {
 
     theBorder.newBorder();
-    thePhisics.newFruit();
-    thePhisics.draw();
+    theField.newFruit();
+    theField.draw();
 }
 
 
@@ -57,7 +51,7 @@ bool GameWorld::operator()()
     // Game step
     if (system("cls")) system("clear");
     Pete.moove();
-    thePhisics.draw();
+    theField.draw();
     return Pete.getAlive();
 }
 
