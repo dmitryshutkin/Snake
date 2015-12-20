@@ -13,9 +13,6 @@ using std::endl;
 
 int main()
 {
-    // Russian language 
-    setlocale(LC_ALL, "Russian");
-
     do {
 	    // Clear screen both for Windows and Linux versions
 	    if (system("cls")) system("clear");	
