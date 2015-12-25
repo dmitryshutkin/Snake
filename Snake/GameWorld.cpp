@@ -9,7 +9,6 @@ using namespace std;
 
 GameWorld::GameWorld()
 {
-
     theBorder.newBorder();
     theField.newFruit();
     theField.draw();
