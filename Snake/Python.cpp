@@ -25,7 +25,7 @@ void Python::moove()
     // Check for self eating
     if (field(x, y) == PYTHON)
         #ifdef DEBUG
-            ;
+           ;
         #else
             alive = false;
         #endif

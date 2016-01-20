@@ -3,8 +3,8 @@
 
 // The Main Definitions file
 
-//#define DEBUG
-//#define INNER_BARRIER
+#define DEBUG
+#define INNER_BARRIER
 
 enum Size { sizeX = 30, sizeY = 20 };
 
