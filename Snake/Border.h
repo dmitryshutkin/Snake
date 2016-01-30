@@ -1,15 +1,19 @@
 #ifndef Border_h__
 #define Border_h__
 
-#include "Field.h"
+#include "MainDefinitions.h"
+
+
+
+class GameWorld;
 
 
 
 class Border
 {
-    Field & field;
+	GameWorld & world;
 public:
-    Border(Field & fi) : field(fi) { };
+    Border(GameWorld & w) : world(w) { };
     void newBorder();
 };
 

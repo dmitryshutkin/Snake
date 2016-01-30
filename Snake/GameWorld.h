@@ -3,23 +3,33 @@
 
 #include "MainDefinitions.h"
 
+#include "Map.h"
 #include "Border.h"
+#include "Fruit.h"
+#include "Poison.h"
 #include "Python.h"
-#include "Field.h"
 
 
 
 class GameWorld
 {
-    Field theField;
-    Border theBorder = Border(theField);
-    Python Pete = Python(theField);         // By the way, his name is Pete
-    int score = 0;
 public:
     GameWorld();
     GameWorld & operator<< (int);             // keyboard stream reading
     bool operator() ();                       // Game step, returns false to exit the program 
     operator bool() const;                    // returns false to exit the program
+	const size_t GetScore() { return score; };
+private:
+    Map map;
+    size_t score = 1;
+    Border border = Border(*this);
+	Fruit fruit = Fruit(*this);
+	Poison poison = Poison(*this);
+    Python Pete = Python(*this);              // By the way, his name is Pete
+	friend Border;
+	friend Fruit;
+	friend Poison;
+	friend Python;
 };
 
 

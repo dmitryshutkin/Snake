@@ -9,9 +9,13 @@ using namespace std;
 
 GameWorld::GameWorld()
 {
-    theBorder.newBorder();
-    theField.newFruit();
-    theField.draw();
+	size_t i;
+    border.newBorder();
+	for (i = 0; i < NumOfFruits; ++i)
+		fruit.newFruit();
+	for (i = 0; i < NumOfPoisons; ++i)
+		poison.newPoison();
+	map.reDraw();
 }
 
 
@@ -48,9 +52,8 @@ GameWorld & GameWorld::operator<<(int ch)
 bool GameWorld::operator()()
 {
     // Game step
-    if (system("cls")) system("clear");
     Pete.moove();
-    theField.draw();
+    map.reDraw();
     return Pete.getAlive();
 }
 

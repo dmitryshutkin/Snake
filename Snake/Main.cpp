@@ -28,7 +28,8 @@ int main()
 	    } while (gameWorld());				// Do while the World state is true
 		
 	    // Completion
-	    cout << "\n Esc to exit ";
+		cout << "\n""Your score: " << gameWorld.GetScore() << endl;
+	    cout << "Esc to exit ";
     } while (_getch() != ESC);
 
     return 0;	

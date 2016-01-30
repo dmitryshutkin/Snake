@@ -2,29 +2,31 @@
 #define Python_h__
 
 #include "MainDefinitions.h"
-#include "Field.h"
 
 #include <queue>
+
+
+
+class GameWorld;
 
 
 
 class PlainVector
 {
 public:
-    PlainVector(int X, int Y) :x(X), y(Y) { };
-    int x, y;
+    PlainVector(size_t X, size_t Y) :x(X), y(Y) { };
+    size_t x, y;
 };
-
 
 
 
 class Python
 {
-    Field & field;
+	GameWorld & world;
 
 public:
 
-    Python(Field & fi) : field(fi) { body.push(PlainVector(x, y)); };
+    Python(GameWorld & w) : world(w) { body.push(PlainVector(x, y)); };
        
     void toUp();
     void toRight();
@@ -39,10 +41,9 @@ public:
 private:
 
     bool alive = true;                        // Python is alive
-    int length = 1;
 
-    int x = sizeX / 2, y = sizeY / 2;
-    int dx = 0, dy = 1;
+    size_t x = sizeX / 2, y = sizeY / 2;
+    size_t dx = 1, dy = 0;
 
     std::queue<PlainVector> body;
 
