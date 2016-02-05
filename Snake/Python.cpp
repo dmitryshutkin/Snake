@@ -4,7 +4,7 @@
 
 
 
-void Python::moove()
+void Python::Do()
 {
     // Change coordinates
     x += dx;
@@ -20,8 +20,8 @@ void Python::moove()
         y += 2 * dy;
     }
     #else
-    if (world.map(x, y) == BORDER)
-        alive = false;
+	if (world.map(x, y) == BORDER)
+		world.Interact(*this, world.border);
     #endif
 
     // Check for self eating
@@ -29,37 +29,24 @@ void Python::moove()
         #ifdef DEBUG
            ;
         #else
-            alive = false;
+            world.Interact(*this, *this);
         #endif
+
+	// Check for a turn eating
+	if (world.map(x, y) == TURN)
+		world.Interact(*this, world.turn);
 
     // Check for fruit eating
     if (world.map(x, y) == FRUIT)
-    {
-		++world.score;
-		world.fruit.newFruit();
-    }
+		world.Interact(*this, world.fruit);
     else
     {
 		if (world.map(x, y) == POISON)
-		{
-			if (world.score > 1)
-			{
-				--world.score;
-				world.map(body.front().x, body.front().y) = BLANK;
-				world.poison.newPoison();
-				body.pop();
-			}
-			else
-			{
-				world.poison.newPoison();
-				#ifndef DEBUG
-				    alive = false;
-				#endif
-			}
-		}
-		world.map(body.front().x, body.front().y) = BLANK;
-        body.pop();
+			world.Interact(*this, world.poison);
+		shrink();
     }
+
+	// Grow to the (x, y) position
     body.push(PlainVector(x, y));
 	world.map(x, y) = PYTHON;
 }
@@ -113,6 +100,14 @@ void Python::toLeft()
         dx = -1;
         dy = 0;
     }
+}
+
+
+
+void Python::shrink()
+{
+	world.map(body.front().x, body.front().y) = BLANK;
+	body.pop();
 }
 
 

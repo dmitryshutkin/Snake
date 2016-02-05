@@ -3,17 +3,20 @@
 
 #include "MainDefinitions.h"
 
+#include "AbstractGameObject.h"
+
 
 
 class GameWorld;
 
 
 
-class Poison
+class Poison : public AbstractGameObject
 {
-	GameWorld & world;
 public:
-	Poison(GameWorld & w) : world(w) { };
+	Poison(GameWorld & w) :AbstractGameObject(w) { };
+	virtual void Do() { };
+	virtual void Draw() { };
 	void newPoison();
 };
 

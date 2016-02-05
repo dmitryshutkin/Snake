@@ -3,17 +3,20 @@
 
 #include "MainDefinitions.h"
 
+#include "AbstractGameObject.h"
+
 
 
 class GameWorld;
 
 
 
-class Border
+class Border : public AbstractGameObject
 {
-	GameWorld & world;
 public:
-    Border(GameWorld & w) : world(w) { };
+    Border(GameWorld & w) : AbstractGameObject(w) { };
+	virtual void Do() { }; 
+	virtual void Draw() { }; 
     void newBorder();
 };
 

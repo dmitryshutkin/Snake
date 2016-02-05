@@ -3,16 +3,19 @@
 
 #include "MainDefinitions.h"
 
+#include "AbstractGameObject.h"
+
 
 class GameWorld;
 
 
 
-class Fruit
+class Fruit : public AbstractGameObject
 {
-	GameWorld & world;
 public:
-	Fruit(GameWorld & w) : world(w) { };
+	Fruit(GameWorld & w) : AbstractGameObject(w) { };
+	virtual void Do() { };
+	virtual void Draw() { };
 	void newFruit();
 };
 

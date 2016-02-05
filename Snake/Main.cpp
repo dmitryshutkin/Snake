@@ -29,7 +29,7 @@ int main()
 		
 	    // Completion
 		cout << "\n""Your score: " << gameWorld.GetScore() << endl;
-	    cout << "Esc to exit ";
+	    cout << "\n""Esc to exit ";
     } while (_getch() != ESC);
 
     return 0;	

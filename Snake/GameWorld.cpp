@@ -15,6 +15,8 @@ GameWorld::GameWorld()
 		fruit.newFruit();
 	for (i = 0; i < NumOfPoisons; ++i)
 		poison.newPoison();
+	for (i = 0; i < NumOfTurns; ++i)
+		turn.newTurn();
 	map.reDraw();
 }
 
@@ -49,12 +51,22 @@ GameWorld & GameWorld::operator<<(int ch)
 
 
 
-bool GameWorld::operator()()
+bool GameWorld::Do()
 {
     // Game step
-    Pete.moove();
+	border.Do();
+	fruit.Do();
+	poison.Do();
+    Pete.Do();
     map.reDraw();
     return Pete.getAlive();
+}
+
+
+
+bool GameWorld::operator()()
+{
+	return Do();
 }
 
 
@@ -62,6 +74,52 @@ bool GameWorld::operator()()
 GameWorld::operator bool() const
 {
     return Pete.getAlive();
+}
+
+
+
+void GameWorld::Interact(Python & aggressor, Border & victim)
+{
+	aggressor.die();
+}
+
+void GameWorld::Interact(Python & aggressor, Python & victim)
+{
+	victim.die();
+}
+
+
+
+void GameWorld::Interact(Python & aggressor, Fruit & victim)
+{
+	++score;
+	victim.newFruit();
+}
+
+
+
+void GameWorld::Interact(Python & aggressor, Poison & victim)
+{
+	victim.newPoison();
+	if (score > 1)
+	{
+		--score;
+		aggressor.shrink();
+	}
+	else
+		#ifndef DEBUG
+		    aggressor.die();
+	    #else
+		    ;
+		#endif
+}
+
+
+
+void GameWorld::Interact(Python & aggressor, Turn & victim)
+{
+	aggressor.toRight();
+	victim.newTurn();
 }
 
 

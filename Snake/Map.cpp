@@ -38,6 +38,9 @@ char Map::interpretCell(size_t cell)
         return FRUIT_SYMB;
 	else if (cell == POISON)
 		return POISON_SYMB;
+	else if (cell == TURN)
+		return TURN_SYMB;
+
     return '!';
 }
 

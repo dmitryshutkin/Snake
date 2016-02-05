@@ -3,6 +3,8 @@
 
 #include "MainDefinitions.h"
 
+#include "AbstractGameObject.h"
+
 #include <queue>
 
 
@@ -20,20 +22,23 @@ public:
 
 
 
-class Python
+class Python : public AbstractGameObject
 {
-	GameWorld & world;
 
 public:
 
-    Python(GameWorld & w) : world(w) { body.push(PlainVector(x, y)); };
+	Python(GameWorld & w) : AbstractGameObject(w) { body.push(PlainVector(x, y)); };
+
+	virtual void Do();
+	virtual void Draw() { };
+
        
     void toUp();
     void toRight();
     void toDown();
     void toLeft();
     
-    void moove();
+	void shrink();
     void die();
 
     bool getAlive() const { return alive; }
