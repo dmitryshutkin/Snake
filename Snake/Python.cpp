@@ -102,6 +102,30 @@ void Python::toLeft()
     }
 }
 
+void Python::turn()
+{
+	if (dx == 1)
+	{
+		dx = 0;
+		dy = 1;
+	}
+	else if (dy == 1)
+	{
+		dy = 0;
+		dx = -1;
+	}
+	else if (dx == -1)
+	{
+		dx = 0;
+		dy = -1;
+	}
+	else
+	{
+		dy = 0;
+		dx = 1;
+	}
+}
+
 
 
 void Python::shrink()

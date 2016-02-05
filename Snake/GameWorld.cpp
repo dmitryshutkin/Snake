@@ -83,6 +83,8 @@ void GameWorld::Interact(Python & aggressor, Border & victim)
 	aggressor.die();
 }
 
+
+
 void GameWorld::Interact(Python & aggressor, Python & victim)
 {
 	victim.die();
@@ -118,7 +120,7 @@ void GameWorld::Interact(Python & aggressor, Poison & victim)
 
 void GameWorld::Interact(Python & aggressor, Turn & victim)
 {
-	aggressor.toRight();
+	aggressor.turn();
 	victim.newTurn();
 }
 

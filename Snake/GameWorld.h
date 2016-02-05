@@ -38,8 +38,8 @@ private:
 	void Interact(Python &, Border &);
 	void Interact(Python &, Fruit &);
 	void Interact(Python &, Poison &);
-	void Interact(Python &, Python &);
 	void Interact(Python &, Turn &);
+	void Interact(Python &, Python &);
 
 };
 

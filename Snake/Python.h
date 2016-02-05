@@ -37,6 +37,7 @@ public:
     void toRight();
     void toDown();
     void toLeft();
+	void turn();
     
 	void shrink();
     void die();
