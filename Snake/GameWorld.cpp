@@ -29,7 +29,7 @@ GameWorld & GameWorld::operator<<(int ch)
             Pete.die();
         else
         {
-            // Change the Python direction
+            // Change python's direction
             switch (ch)
             {
             case UP:
@@ -54,11 +54,14 @@ GameWorld & GameWorld::operator<<(int ch)
 bool GameWorld::Do()
 {
     // Game step
+	// Object activity
 	border.Do();
 	fruit.Do();
 	poison.Do();
     Pete.Do();
+	// Redraw the scene
     map.reDraw();
+	// Check for being alive and return the state
     return Pete.getAlive();
 }
 
@@ -87,7 +90,9 @@ void GameWorld::Interact(Python & aggressor, Border & victim)
 
 void GameWorld::Interact(Python & aggressor, Python & victim)
 {
+	#ifndef DEBUG
 	victim.die();
+	#endif
 }
 
 
@@ -95,6 +100,7 @@ void GameWorld::Interact(Python & aggressor, Python & victim)
 void GameWorld::Interact(Python & aggressor, Fruit & victim)
 {
 	++score;
+	aggressor.beGrowing();
 	victim.newFruit();
 }
 
@@ -122,6 +128,25 @@ void GameWorld::Interact(Python & aggressor, Turn & victim)
 {
 	aggressor.turn();
 	victim.newTurn();
+}
+
+
+
+void GameWorld::Interact(AbstractGameObject & aggressor, AbstractGameObject & victim)
+{
+	if (typeid(aggressor) == typeid(Python))
+		if (typeid(victim) == typeid(Python))
+			Interact(dynamic_cast<Python &>(aggressor), dynamic_cast<Python &>(victim));
+		else if (typeid(victim) == typeid(Border))
+			Interact(dynamic_cast<Python &>(aggressor), dynamic_cast<Border &>(victim));
+		else if (typeid(victim) == typeid(Fruit))
+			Interact(dynamic_cast<Python &>(aggressor), dynamic_cast<Fruit &>(victim));
+		else if (typeid(victim) == typeid(Poison))
+			Interact(dynamic_cast<Python &>(aggressor), dynamic_cast<Poison &>(victim));
+		else if (typeid(victim) == typeid(Turn))
+			Interact(dynamic_cast<Python &>(aggressor), dynamic_cast<Turn &>(victim));
+		else if (typeid(victim) == typeid(Python))
+			Interact(dynamic_cast<Python &>(aggressor), dynamic_cast<Python &>(victim));
 }
 
 

@@ -14,8 +14,8 @@ void Poison::newPoison()
 		srand(static_cast<unsigned int>(time(0)));
 		x = rand() % (sizeX - PoisonBorder * 2) + PoisonBorder;
 		y = rand() % (sizeY - PoisonBorder * 2) + PoisonBorder;
-	} while (world.map(x, y) != BLANK);
-	world.map(x, y) = POISON;
+	} while (*world.map(x, y) != nullptr);
+	*world.map(x, y) = this;
 }
 
 

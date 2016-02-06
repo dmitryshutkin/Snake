@@ -5,7 +5,7 @@
 
 #include "AbstractGameObject.h"
 
-#include <queue>
+#include <deque>
 
 
 
@@ -27,10 +27,10 @@ class Python : public AbstractGameObject
 
 public:
 
-	Python(GameWorld & w) : AbstractGameObject(w) { body.push(PlainVector(x, y)); };
+	Python(GameWorld & w) : AbstractGameObject(w) { body.push_back(PlainVector(x, y)); };
 
 	virtual void Do();
-	virtual void Draw() { };
+	virtual void Draw();
 
        
     void toUp();
@@ -39,19 +39,20 @@ public:
     void toLeft();
 	void turn();
     
+	void beGrowing();
 	void shrink();
     void die();
 
     bool getAlive() const { return alive; }
-
 private:
 
     bool alive = true;                        // Python is alive
+	bool growing = false;
 
     size_t x = sizeX / 2, y = sizeY / 2;
     size_t dx = 1, dy = 0;
 
-    std::queue<PlainVector> body;
+    std::deque<PlainVector> body;
 
 };
 

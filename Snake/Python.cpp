@@ -9,46 +9,31 @@ void Python::Do()
     // Change coordinates
     x += dx;
     y += dy;
-	
-    // Check for a border touch
-    #ifdef DEBUG
-    if (world.map(x, y) == BORDER)
-    {
-        dx *= -1;
-        x += 2 * dx;
-        dy *= -1;
-        y += 2 * dy;
-    }
-    #else
-	if (world.map(x, y) == BORDER)
-		world.Interact(*this, world.border);
-    #endif
-
-    // Check for self eating
-    if (world.map(x, y) == PYTHON)
-        #ifdef DEBUG
-           ;
-        #else
-            world.Interact(*this, *this);
-        #endif
-
-	// Check for a turn eating
-	if (world.map(x, y) == TURN)
-		world.Interact(*this, world.turn);
-
-    // Check for fruit eating
-    if (world.map(x, y) == FRUIT)
-		world.Interact(*this, world.fruit);
-    else
-    {
-		if (world.map(x, y) == POISON)
-			world.Interact(*this, world.poison);
+	// Do we touch anything?!
+	if (*world.map(x, y) != nullptr)
+		world.Interact(*this, **world.map(x, y));
+	// Move
+	if (growing)
+	{
+		body.push_back(PlainVector(x, y));
+		*world.map(x, y) = this;
+		growing = false;
+	}
+	else
+	{
+		body.push_back(PlainVector(x, y));
+		*world.map(x, y) = this;
 		shrink();
-    }
+	}
+}
 
-	// Grow to the (x, y) position
-    body.push(PlainVector(x, y));
-	world.map(x, y) = PYTHON;
+
+
+void Python::Draw()
+{
+	//std::deque<PlainVector>::iterator iter;
+	//for (iter = body.begin(); iter != body.end(); ++iter)
+	//	*(world.map(iter->x,iter->y)) = this;
 }
 
 
@@ -56,6 +41,13 @@ void Python::Do()
 void Python::die()
 {
     alive = false;
+}
+
+
+
+void Python::beGrowing()
+{
+	growing = true;
 }
 
 
@@ -130,8 +122,8 @@ void Python::turn()
 
 void Python::shrink()
 {
-	world.map(body.front().x, body.front().y) = BLANK;
-	body.pop();
+	*world.map(body.front().x, body.front().y) = nullptr;
+	body.pop_front();
 }
 
 

@@ -29,6 +29,8 @@ private:
     Map map;
     size_t score = 1;
 
+	void Interact(AbstractGameObject &, AbstractGameObject &);
+
     Border border = Border(*this); friend Border;
 	Fruit fruit = Fruit(*this);	friend Fruit;
 	Poison poison = Poison(*this); friend Poison;

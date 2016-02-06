@@ -15,8 +15,8 @@ void Turn::newTurn()
 		srand(static_cast<unsigned int>(time(0)));
 		x = rand() % (sizeX - TurnBorder * 2) + TurnBorder;
 		y = rand() % (sizeY - TurnBorder * 2) + TurnBorder;
-	} while (world.map(x, y) != BLANK);
-	world.map(x, y) = TURN;
+	} while (*world.map(x, y) != nullptr);
+	*world.map(x, y) = this;
 }
 
 

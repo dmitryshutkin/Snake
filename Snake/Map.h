@@ -3,6 +3,8 @@
 
 #include "MainDefinitions.h"
 
+#include "AbstractGameObject.h"
+
 
 
 class Map 
@@ -10,10 +12,10 @@ class Map
 public:
     Map();
     void reDraw();
-    size_t & operator() (size_t, size_t);
+    AbstractGameObject * * operator() (size_t, size_t);
 private:
-    size_t cells[sizeX][sizeY];
-    char interpretCell(size_t);
+	AbstractGameObject * cells[sizeX][sizeY];
+    char interpretCell(AbstractGameObject *);
 };
 
 
