@@ -1,4 +1,4 @@
-#ifndef Map_h__
+﻿#ifndef Map_h__
 #define Map_h__
 
 #include "MainDefinitions.h"
@@ -12,7 +12,7 @@ class Map
 {
 public:
 	Map();
-    AbstractGameObject * * operator() (size_t, size_t);
+	AbstractGameObject * * operator() (size_t, size_t);
 private:
 	AbstractGameObject * cells[sizeX][sizeY];
 };

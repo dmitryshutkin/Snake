@@ -15,14 +15,14 @@ int main()
 	ConsoleView consoleView;
 	const ConsoleController consoleController;
 
-    do {
-	    // Create the World!!!
-	    GameWorld gameWorld(consoleView, consoleController);
+	do {
+		// Create the World!!!
+		GameWorld gameWorld(consoleView, consoleController);
 
-	    // Game loop, send keyboard messages into the World
+		// Game loop, send keyboard messages into the World
 		gameWorld.Be();
 
-    } while (consoleController.GetCommand() != ESC);
+	} while (consoleController.GetCommand() != ESC);
 
-    return 0;	
+	return 0;	
 }

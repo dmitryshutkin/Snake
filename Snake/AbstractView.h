@@ -1,4 +1,4 @@
-#ifndef AbstractView_h__
+﻿#ifndef AbstractView_h__
 #define AbstractView_h__
 
 // Test of new way of game drawing using some graphic library

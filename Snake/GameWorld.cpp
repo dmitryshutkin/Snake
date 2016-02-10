@@ -12,7 +12,7 @@ GameWorld::GameWorld(AbstractView & v, const AbstractController & c) : view(v), 
 {
 	view.SetMap(&map);
 	size_t i;
-    border.newBorder();
+	border.newBorder();
 	for (i = 0; i < NumOfFruits; ++i)
 		fruits.NewFruit();
 	for (i = 0; i < NumOfPoisons; ++i)
@@ -29,29 +29,29 @@ GameWorld::GameWorld(AbstractView & v, const AbstractController & c) : view(v), 
 
 GameWorld & GameWorld::operator<<(int ch)
 {
-    if (Pete.GetAlive())
-        if (ch == ESC)
-            Pete.Die();
-        else
-        {
-            // Change python's direction
-            switch (ch)
-            {
-            case UP:
-                Pete.ToUp();
-                break;
-            case RIGHT:
-                Pete.ToRight();
-                break;
-            case DOWN:
-                Pete.ToDown();
-                break;
-            case LEFT:
-                Pete.ToLeft();
-                break;
-            }
-        }
-    return *this;
+	if (Pete.GetAlive())
+		if (ch == ESC)
+			Pete.Die();
+		else
+		{
+			// Change python's direction
+			switch (ch)
+			{
+			case UP:
+				Pete.ToUp();
+				break;
+			case RIGHT:
+				Pete.ToRight();
+				break;
+			case DOWN:
+				Pete.ToDown();
+				break;
+			case LEFT:
+				Pete.ToLeft();
+				break;
+			}
+		}
+	return *this;
 }
 
 
@@ -74,23 +74,23 @@ void GameWorld::Be()
 
 bool GameWorld::Do()
 {
-    // Game step
+	// Game step
 	// Object activity
 	border.Do();
 	fruits.Do();
 	poisons.Do();
-	if (numOfGrow > 0)
+	if (numOfGrows > 0)
 	{
 		++score;
 		Pete.BeGrowing();
-		--numOfGrow;
+		--numOfGrows;
 	}
-    Pete.Do();
+	Pete.Do();
 	superFruits.Do();
 	// Redraw the scene
-    view.Redraw();
+	view.Redraw();
 	// Check for being alive and return the state
-    return Pete.GetAlive();
+	return Pete.GetAlive();
 }
 
 
@@ -104,7 +104,7 @@ bool GameWorld::operator()()
 
 GameWorld::operator bool() const
 {
-    return Pete.GetAlive();
+	return Pete.GetAlive();
 }
 
 
@@ -120,7 +120,7 @@ void GameWorld::Interact(Python & aggressor, Fruits & victim)
 {
 	++score;
 	if (aggressor.GetGrowing())
-		++numOfGrow;
+		++numOfGrows;
 	aggressor.BeGrowing();
 	victim.NewFruit();
 }
@@ -130,9 +130,9 @@ void GameWorld::Interact(Python & aggressor, Fruits & victim)
 void GameWorld::Interact(Python & aggressor, SuperFruits & victim)
 {
 	++score;
-	numOfGrow += NumOfSuperFruitGrows - 1;
+	numOfGrows += NumOfSuperFruitGrows - 1;
 	if (aggressor.GetGrowing())
-		++numOfGrow;
+		++numOfGrows;
 	aggressor.BeGrowing();
 	victim.NewFruit();
 
@@ -150,9 +150,9 @@ void GameWorld::Interact(Python & aggressor, Poisons & victim)
 	}
 	else
 		#ifndef DEBUG
-		    aggressor.Die();
-	    #else
-		    ;
+			aggressor.Die();
+		#else
+			;
 		#endif
 }
 

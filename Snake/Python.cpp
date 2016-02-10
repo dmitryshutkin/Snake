@@ -8,7 +8,7 @@
 
 void Python::Do()
 {
-  	#ifdef DEBUG
+	#ifdef DEBUG
 		if (*world.map(x + dx, y + dy) != nullptr)
 			if (typeid(**world.map(x + dx, y + dy)) == typeid(Border))
 			{
@@ -17,8 +17,8 @@ void Python::Do()
 			}
 	#endif
 	// Change coordinates
-    x += dx;
-    y += dy;
+	x += dx;
+	y += dy;
 	// Do we touch anything?!
 	if (*world.map(x, y) != nullptr)
 		world.Interact(*this, **world.map(x, y));
@@ -39,19 +39,9 @@ void Python::Do()
 
 
 
-void Python::SetImage()
-{
-	// Set sprites in view object
-	// Depending on neighbor coordinates we can decide what sprite to use: head, tail, horizontal, vertical or corner
-	
-
-}
-
-
-
 void Python::Die()
 {
-    alive = false;
+	alive = false;
 }
 
 
@@ -65,44 +55,44 @@ void Python::BeGrowing()
 
 void Python::ToUp()
 {
-    if (dy != 1)  // Prevent self eating on a back moving try 
-    {
-        dx = 0;
-        dy = -1;
-    }
+	if (dy != 1)  // Prevent self eating on a back moving try 
+	{
+		dx = 0;
+		dy = -1;
+	}
 }
 
 
 
 void Python::ToRight()
 {
-    if (dx != -1)
-    {
-        dx = 1;
-        dy = 0;
-    }
+	if (dx != -1)
+	{
+		dx = 1;
+		dy = 0;
+	}
 }
 
 
 
 void Python::ToDown()
 {
-    if (dy != -1)
-    {
-        dx = 0;
-        dy = 1;
-    }
+	if (dy != -1)
+	{
+		dx = 0;
+		dy = 1;
+	}
 }
 
 
 
 void Python::ToLeft()
 {
-    if (dx != 1)
-    {
-        dx = -1;
-        dy = 0;
-    }
+	if (dx != 1)
+	{
+		dx = -1;
+		dy = 0;
+	}
 }
 
 void Python::Turn()

@@ -1,4 +1,4 @@
-#ifndef Turns_h__
+﻿#ifndef Turns_h__
 #define Turns_h__
 
 #include "MainDefinitions.h"
@@ -12,7 +12,6 @@ class Turns : public AbstractGameObject
 public:
 	Turns(GameWorld & w) : AbstractGameObject(w) { };
 	virtual void Do() { };
-	virtual void SetImage() { };
 	void NewTurn();
 };
 

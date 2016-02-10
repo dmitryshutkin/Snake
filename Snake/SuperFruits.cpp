@@ -1,4 +1,4 @@
-#include "SuperFruits.h"
+﻿#include "SuperFruits.h"
 
 #include "GameWorld.h"
 
@@ -15,8 +15,8 @@ void SuperFruits::NewFruit()
 	size_t x, y;
 	do {
 		srand(static_cast<unsigned int>(time(0)));
-		x = rand() % (sizeX - FruitBorder * 2) + FruitBorder;
-		y = rand() % (sizeY - FruitBorder * 2) + FruitBorder;
+		x = rand() % (sizeX - SuperFruitBorder * 2) + SuperFruitBorder;
+		y = rand() % (sizeY - SuperFruitBorder * 2) + SuperFruitBorder;
 	} while (*world.map(x, y) != nullptr);
 	*world.map(x, y) = this;
 }

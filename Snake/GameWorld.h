@@ -22,11 +22,11 @@ class GameWorld
 public:
 
 	GameWorld(AbstractView &, const AbstractController &);
-    GameWorld & operator<< (int);                  // keyboard stream reading
+	GameWorld & operator<< (int);                  // keyboard stream reading
 	void Be();                                     // Game loop
 	bool Do();                                     // Game step, returns false to exit the game loop
-    bool operator() ();                            
-    operator bool() const;                         // returns false to exit the program
+	bool operator() ();                            
+	operator bool() const;                         // returns false to exit the program
 	const size_t GetScore() { return score; };
 
 private:
@@ -40,13 +40,13 @@ private:
 	
 	size_t score = 1;
 
-    Border border = Border(*this); friend Border;
+	Border border = Border(*this); friend Border;
 	Fruits fruits = Fruits(*this);	friend Fruits;
 	SuperFruits superFruits = SuperFruits(*this); friend SuperFruits;
 	Poisons poisons = Poisons(*this); friend Poisons;
 	Turns turns = Turns(*this); friend Turns;
 
-    Python Pete = Python(*this); friend Python;    // By the way, his name is Pete	
+	Python Pete = Python(*this); friend Python;    // By the way, his name is Pete	
 	void Interact(Python &, Border &);
 	void Interact(Python &, Fruits &);
 	void Interact(Python &, SuperFruits &);
@@ -54,7 +54,7 @@ private:
 	void Interact(Python &, Turns &);
 	void Interact(Python &, Python &);
 
-	size_t numOfGrow = 0;
+	size_t numOfGrows = 0;
 
 };
 

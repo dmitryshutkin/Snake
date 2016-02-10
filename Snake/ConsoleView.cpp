@@ -1,4 +1,4 @@
-#include "MainDefinitions.h"
+﻿#include "MainDefinitions.h"
 
 #include "ConsoleView.h"
 

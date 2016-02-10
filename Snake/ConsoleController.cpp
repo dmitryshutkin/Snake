@@ -1,4 +1,4 @@
-#include "MainDefinitions.h"
+﻿#include "MainDefinitions.h"
 
 #include "ConsoleController.h"
 
@@ -9,7 +9,7 @@
 
 bool ConsoleController::KeyHit() const
 {
-	return static_cast<bool>(_kbhit());
+	return _kbhit() != 0; // static_cast<bool>(_kbhit());
 }
 
 

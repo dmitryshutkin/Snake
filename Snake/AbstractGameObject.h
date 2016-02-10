@@ -1,4 +1,4 @@
-#ifndef AbstractGameObject_h__
+﻿#ifndef AbstractGameObject_h__
 #define AbstractGameObject_h__
 
 #include "MainDefinitions.h"
@@ -15,7 +15,6 @@ protected:
 public:
 	AbstractGameObject(GameWorld & w) : world(w) { };
 	virtual void Do() = 0;
-	virtual void SetImage() = 0;
 };
 
 

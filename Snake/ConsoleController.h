@@ -1,4 +1,4 @@
-#ifndef ConsoleController_h__
+﻿#ifndef ConsoleController_h__
 #define ConsoleController_h__
 
 #include "AbstractController.h"
