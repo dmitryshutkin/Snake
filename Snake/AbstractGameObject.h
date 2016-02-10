@@ -15,8 +15,7 @@ protected:
 public:
 	AbstractGameObject(GameWorld & w) : world(w) { };
 	virtual void Do() = 0;
-	virtual void Draw() = 0;
-	// virtual ~AbstractGameObject();
+	virtual void SetImage() = 0;
 };
 
 

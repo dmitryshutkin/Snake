@@ -9,10 +9,6 @@
 
 
 
-class GameWorld;
-
-
-
 class PlainVector
 {
 public:
@@ -27,23 +23,25 @@ class Python : public AbstractGameObject
 
 public:
 
-	Python(GameWorld & w) : AbstractGameObject(w) { body.push_back(PlainVector(x, y)); };
+	Python(GameWorld & w) : AbstractGameObject(w) { body.push_front(PlainVector(x, y)); };
 
 	virtual void Do();
-	virtual void Draw();
+	virtual void SetImage();
 
        
-    void toUp();
-    void toRight();
-    void toDown();
-    void toLeft();
-	void turn();
+    void ToUp();
+    void ToRight();
+    void ToDown();
+    void ToLeft();
+	void Turn();
     
-	void beGrowing();
-	void shrink();
-    void die();
+	void BeGrowing();
+	void Shrink();
+    void Die();
 
-    bool getAlive() const { return alive; }
+    bool GetAlive() const { return alive; }
+	bool GetGrowing() const { return growing; }
+
 private:
 
     bool alive = true;                        // Python is alive

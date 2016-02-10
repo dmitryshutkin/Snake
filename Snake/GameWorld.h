@@ -3,12 +3,16 @@
 
 #include "MainDefinitions.h"
 
+#include "AbstractView.h"
+#include "AbstractController.h"
+
 #include "Map.h"
 #include "Border.h"
-#include "Fruit.h"
-#include "Poison.h"
-#include "Turn.h"
+#include "Fruits.h"
+#include "Poisons.h"
+#include "Turns.h"
 #include "Python.h"
+#include "SuperFruits.h"
 
 
 
@@ -17,31 +21,40 @@ class GameWorld
 
 public:
 
-    GameWorld();
+	GameWorld(AbstractView &, const AbstractController &);
     GameWorld & operator<< (int);                  // keyboard stream reading
-	bool Do();                                     // Game step, returns false to exit the program 
+	void Be();                                     // Game loop
+	bool Do();                                     // Game step, returns false to exit the game loop
     bool operator() ();                            
     operator bool() const;                         // returns false to exit the program
 	const size_t GetScore() { return score; };
 
 private:
 
-    Map map;
-    size_t score = 1;
+	AbstractView & view;
+	const AbstractController & controller;
 
+	Map map;
+	
 	void Interact(AbstractGameObject &, AbstractGameObject &);
+	
+	size_t score = 1;
 
     Border border = Border(*this); friend Border;
-	Fruit fruit = Fruit(*this);	friend Fruit;
-	Poison poison = Poison(*this); friend Poison;
-	Turn turn = Turn(*this); friend Turn;
+	Fruits fruits = Fruits(*this);	friend Fruits;
+	SuperFruits superFruits = SuperFruits(*this); friend SuperFruits;
+	Poisons poisons = Poisons(*this); friend Poisons;
+	Turns turns = Turns(*this); friend Turns;
 
     Python Pete = Python(*this); friend Python;    // By the way, his name is Pete	
 	void Interact(Python &, Border &);
-	void Interact(Python &, Fruit &);
-	void Interact(Python &, Poison &);
-	void Interact(Python &, Turn &);
+	void Interact(Python &, Fruits &);
+	void Interact(Python &, SuperFruits &);
+	void Interact(Python &, Poisons &);
+	void Interact(Python &, Turns &);
 	void Interact(Python &, Python &);
+
+	size_t numOfGrow = 0;
 
 };
 

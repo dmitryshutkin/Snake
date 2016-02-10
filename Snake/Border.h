@@ -7,16 +7,12 @@
 
 
 
-class GameWorld;
-
-
-
 class Border : public AbstractGameObject
 {
 public:
     Border(GameWorld & w) : AbstractGameObject(w) { };
 	virtual void Do() { }; 
-	virtual void Draw() { }; 
+	virtual void SetImage() { }; 
     void newBorder();
 };
 

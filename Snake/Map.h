@@ -4,18 +4,17 @@
 #include "MainDefinitions.h"
 
 #include "AbstractGameObject.h"
+#include "AbstractView.h"
 
 
 
 class Map 
 {
 public:
-    Map();
-    void reDraw();
+	Map();
     AbstractGameObject * * operator() (size_t, size_t);
 private:
 	AbstractGameObject * cells[sizeX][sizeY];
-    char interpretCell(AbstractGameObject *);
 };
 
 

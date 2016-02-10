@@ -111,24 +111,32 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Border.cpp" />
+    <ClCompile Include="ConsoleController.cpp" />
     <ClCompile Include="Map.cpp" />
-    <ClCompile Include="Fruit.cpp" />
+    <ClCompile Include="Fruits.cpp" />
     <ClCompile Include="GameWorld.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Poison.cpp" />
+    <ClCompile Include="Poisons.cpp" />
     <ClCompile Include="Python.cpp" />
-    <ClCompile Include="Turn.cpp" />
+    <ClCompile Include="SuperFruits.cpp" />
+    <ClCompile Include="Turns.cpp" />
+    <ClCompile Include="ConsoleView.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AbstractController.h" />
     <ClInclude Include="AbstractGameObject.h" />
     <ClInclude Include="Border.h" />
+    <ClInclude Include="ConsoleController.h" />
+    <ClInclude Include="ConsoleView.h" />
     <ClInclude Include="Map.h" />
-    <ClInclude Include="Fruit.h" />
+    <ClInclude Include="Fruits.h" />
     <ClInclude Include="GameWorld.h" />
     <ClInclude Include="MainDefinitions.h" />
-    <ClInclude Include="Poison.h" />
+    <ClInclude Include="Poisons.h" />
     <ClInclude Include="Python.h" />
-    <ClInclude Include="Turn.h" />
+    <ClInclude Include="SuperFruits.h" />
+    <ClInclude Include="Turns.h" />
+    <ClInclude Include="AbstractView.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

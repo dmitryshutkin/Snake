@@ -1,52 +1,73 @@
 ﻿#include "GameWorld.h"
 
 #include <iostream>
+#include <windows.h>
 
 
 using namespace std;
 
 
 
-GameWorld::GameWorld()
+GameWorld::GameWorld(AbstractView & v, const AbstractController & c) : view(v), controller(c)
 {
+	view.SetMap(&map);
 	size_t i;
     border.newBorder();
 	for (i = 0; i < NumOfFruits; ++i)
-		fruit.newFruit();
+		fruits.NewFruit();
 	for (i = 0; i < NumOfPoisons; ++i)
-		poison.newPoison();
+		poisons.NewPoison();
 	for (i = 0; i < NumOfTurns; ++i)
-		turn.newTurn();
-	map.reDraw();
+		turns.NewTurn();
+	for (i = 0; i < NumOfSuperFruits; ++i)
+		superFruits.NewFruit();
+
+	view.Redraw();
 }
 
 
 
 GameWorld & GameWorld::operator<<(int ch)
 {
-    if (Pete.getAlive())
+    if (Pete.GetAlive())
         if (ch == ESC)
-            Pete.die();
+            Pete.Die();
         else
         {
             // Change python's direction
             switch (ch)
             {
             case UP:
-                Pete.toUp();
+                Pete.ToUp();
                 break;
             case RIGHT:
-                Pete.toRight();
+                Pete.ToRight();
                 break;
             case DOWN:
-                Pete.toDown();
+                Pete.ToDown();
                 break;
             case LEFT:
-                Pete.toLeft();
+                Pete.ToLeft();
                 break;
             }
         }
     return *this;
+}
+
+
+
+void GameWorld::Be()
+{
+	// Game loop, send keyboard messages into the World
+	view.ClearField();
+	do {
+		if (controller.KeyHit())				    // If any key is pressed
+			*this << controller.GetCommand();		// Send message from controller into the Game World
+		Sleep(SLEEP_TIME);
+	} while (this->Do());				            // Do while the World state is true
+
+	// Completion
+	view.PrintResult(score);
 }
 
 
@@ -56,13 +77,20 @@ bool GameWorld::Do()
     // Game step
 	// Object activity
 	border.Do();
-	fruit.Do();
-	poison.Do();
+	fruits.Do();
+	poisons.Do();
+	if (numOfGrow > 0)
+	{
+		++score;
+		Pete.BeGrowing();
+		--numOfGrow;
+	}
     Pete.Do();
+	superFruits.Do();
 	// Redraw the scene
-    map.reDraw();
+    view.Redraw();
 	// Check for being alive and return the state
-    return Pete.getAlive();
+    return Pete.GetAlive();
 }
 
 
@@ -76,47 +104,53 @@ bool GameWorld::operator()()
 
 GameWorld::operator bool() const
 {
-    return Pete.getAlive();
+    return Pete.GetAlive();
 }
 
 
 
 void GameWorld::Interact(Python & aggressor, Border & victim)
 {
-	aggressor.die();
+	aggressor.Die();
 }
 
 
 
-void GameWorld::Interact(Python & aggressor, Python & victim)
-{
-	#ifndef DEBUG
-	victim.die();
-	#endif
-}
-
-
-
-void GameWorld::Interact(Python & aggressor, Fruit & victim)
+void GameWorld::Interact(Python & aggressor, Fruits & victim)
 {
 	++score;
-	aggressor.beGrowing();
-	victim.newFruit();
+	if (aggressor.GetGrowing())
+		++numOfGrow;
+	aggressor.BeGrowing();
+	victim.NewFruit();
 }
 
 
 
-void GameWorld::Interact(Python & aggressor, Poison & victim)
+void GameWorld::Interact(Python & aggressor, SuperFruits & victim)
 {
-	victim.newPoison();
+	++score;
+	numOfGrow += NumOfSuperFruitGrows - 1;
+	if (aggressor.GetGrowing())
+		++numOfGrow;
+	aggressor.BeGrowing();
+	victim.NewFruit();
+
+}
+
+
+
+void GameWorld::Interact(Python & aggressor, Poisons & victim)
+{
+	victim.NewPoison();
 	if (score > 1)
 	{
 		--score;
-		aggressor.shrink();
+		aggressor.Shrink();
 	}
 	else
 		#ifndef DEBUG
-		    aggressor.die();
+		    aggressor.Die();
 	    #else
 		    ;
 		#endif
@@ -124,10 +158,19 @@ void GameWorld::Interact(Python & aggressor, Poison & victim)
 
 
 
-void GameWorld::Interact(Python & aggressor, Turn & victim)
+void GameWorld::Interact(Python & aggressor, Turns & victim)
 {
-	aggressor.turn();
-	victim.newTurn();
+	aggressor.Turn();
+	victim.NewTurn();
+}
+
+
+
+void GameWorld::Interact(Python & aggressor, Python & victim)
+{
+	#ifndef DEBUG
+	victim.Die();
+	#endif
 }
 
 
@@ -139,14 +182,17 @@ void GameWorld::Interact(AbstractGameObject & aggressor, AbstractGameObject & vi
 			Interact(dynamic_cast<Python &>(aggressor), dynamic_cast<Python &>(victim));
 		else if (typeid(victim) == typeid(Border))
 			Interact(dynamic_cast<Python &>(aggressor), dynamic_cast<Border &>(victim));
-		else if (typeid(victim) == typeid(Fruit))
-			Interact(dynamic_cast<Python &>(aggressor), dynamic_cast<Fruit &>(victim));
-		else if (typeid(victim) == typeid(Poison))
-			Interact(dynamic_cast<Python &>(aggressor), dynamic_cast<Poison &>(victim));
-		else if (typeid(victim) == typeid(Turn))
-			Interact(dynamic_cast<Python &>(aggressor), dynamic_cast<Turn &>(victim));
+		else if (typeid(victim) == typeid(Fruits))
+			Interact(dynamic_cast<Python &>(aggressor), dynamic_cast<Fruits &>(victim));
+		else if (typeid(victim) == typeid(SuperFruits))
+			Interact(dynamic_cast<Python &>(aggressor), dynamic_cast<SuperFruits &>(victim));
+		else if (typeid(victim) == typeid(Poisons))
+			Interact(dynamic_cast<Python &>(aggressor), dynamic_cast<Poisons &>(victim));
+		else if (typeid(victim) == typeid(Turns))
+			Interact(dynamic_cast<Python &>(aggressor), dynamic_cast<Turns &>(victim));
 		else if (typeid(victim) == typeid(Python))
 			Interact(dynamic_cast<Python &>(aggressor), dynamic_cast<Python &>(victim));
+
 }
 
 

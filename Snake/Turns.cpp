@@ -1,4 +1,4 @@
-#include "Poison.h"
+#include "Turns.h"
 
 #include "GameWorld.h"
 
@@ -7,13 +7,14 @@
 
 
 
-void Poison::newPoison()
+void Turns::NewTurn()
 {
 	size_t x, y;
-	do	{
+	do
+	{
 		srand(static_cast<unsigned int>(time(0)));
-		x = rand() % (sizeX - PoisonBorder * 2) + PoisonBorder;
-		y = rand() % (sizeY - PoisonBorder * 2) + PoisonBorder;
+		x = rand() % (sizeX - TurnBorder * 2) + TurnBorder;
+		y = rand() % (sizeY - TurnBorder * 2) + TurnBorder;
 	} while (*world.map(x, y) != nullptr);
 	*world.map(x, y) = this;
 }

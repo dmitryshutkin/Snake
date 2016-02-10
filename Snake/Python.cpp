@@ -2,11 +2,21 @@
 
 #include "GameWorld.h"
 
+#include <typeinfo>
+
 
 
 void Python::Do()
 {
-    // Change coordinates
+  	#ifdef DEBUG
+		if (*world.map(x + dx, y + dy) != nullptr)
+			if (typeid(**world.map(x + dx, y + dy)) == typeid(Border))
+			{
+				dx *= -1;
+				dy *= -1;
+			}
+	#endif
+	// Change coordinates
     x += dx;
     y += dy;
 	// Do we touch anything?!
@@ -15,44 +25,45 @@ void Python::Do()
 	// Move
 	if (growing)
 	{
-		body.push_back(PlainVector(x, y));
+		body.push_front(PlainVector(x, y));
 		*world.map(x, y) = this;
 		growing = false;
 	}
 	else
 	{
-		body.push_back(PlainVector(x, y));
+		body.push_front(PlainVector(x, y));
 		*world.map(x, y) = this;
-		shrink();
+		Shrink();
 	}
 }
 
 
 
-void Python::Draw()
+void Python::SetImage()
 {
-	//std::deque<PlainVector>::iterator iter;
-	//for (iter = body.begin(); iter != body.end(); ++iter)
-	//	*(world.map(iter->x,iter->y)) = this;
+	// Set sprites in view object
+	// Depending on neighbor coordinates we can decide what sprite to use: head, tail, horizontal, vertical or corner
+	
+
 }
 
 
 
-void Python::die()
+void Python::Die()
 {
     alive = false;
 }
 
 
 
-void Python::beGrowing()
+void Python::BeGrowing()
 {
 	growing = true;
 }
 
 
 
-void Python::toUp()
+void Python::ToUp()
 {
     if (dy != 1)  // Prevent self eating on a back moving try 
     {
@@ -63,7 +74,7 @@ void Python::toUp()
 
 
 
-void Python::toRight()
+void Python::ToRight()
 {
     if (dx != -1)
     {
@@ -74,7 +85,7 @@ void Python::toRight()
 
 
 
-void Python::toDown()
+void Python::ToDown()
 {
     if (dy != -1)
     {
@@ -85,7 +96,7 @@ void Python::toDown()
 
 
 
-void Python::toLeft()
+void Python::ToLeft()
 {
     if (dx != 1)
     {
@@ -94,7 +105,7 @@ void Python::toLeft()
     }
 }
 
-void Python::turn()
+void Python::Turn()
 {
 	if (dx == 1)
 	{
@@ -120,10 +131,10 @@ void Python::turn()
 
 
 
-void Python::shrink()
+void Python::Shrink()
 {
-	*world.map(body.front().x, body.front().y) = nullptr;
-	body.pop_front();
+	*world.map(body.back().x, body.back().y) = nullptr;
+	body.pop_back();
 }
 
 
