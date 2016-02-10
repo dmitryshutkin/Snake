@@ -10,7 +10,7 @@
 class Poisons : public AbstractGameObject
 {
 public:
-	Poisons(GameWorld & w) :AbstractGameObject(w) { };
+	Poisons(AbstractGameWorld & w) :AbstractGameObject(w) { };
 	virtual void Do() { };
 	void NewPoison();
 };

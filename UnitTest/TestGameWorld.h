@@ -3,19 +3,23 @@
 
 #include "MainDefinitions.h"
 
-#include "TestMap.h"
+#include "AbstractGameWorld.h"
 #include "Fruits.h"
+#include "Map.h"
 
 
 
 
 
-class TestGameWorld
+class TestGameWorld : protected AbstractGameWorld
 {
-
-	TestMap testMap;
-	Fruits fruts = Fruits(*this);
+public:
+	bool FruitsSouldCreateNewFruit();
+private:
+	Fruits fruits = Fruits(*this);
 	friend Fruits;
+	virtual void Interact(AbstractGameObject &, AbstractGameObject &) { throw; };
+
 };
 
 

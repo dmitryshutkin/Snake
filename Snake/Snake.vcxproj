@@ -125,6 +125,7 @@
   <ItemGroup>
     <ClInclude Include="AbstractController.h" />
     <ClInclude Include="AbstractGameObject.h" />
+    <ClInclude Include="AbstractGameWorld.h" />
     <ClInclude Include="Border.h" />
     <ClInclude Include="ConsoleController.h" />
     <ClInclude Include="GameWorld.h" />

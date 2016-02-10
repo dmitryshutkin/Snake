@@ -10,7 +10,7 @@
 class Turns : public AbstractGameObject
 {
 public:
-	Turns(GameWorld & w) : AbstractGameObject(w) { };
+	Turns(AbstractGameWorld & w) : AbstractGameObject(w) { };
 	virtual void Do() { };
 	void NewTurn();
 };

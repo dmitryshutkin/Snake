@@ -4,16 +4,16 @@
 #include "MainDefinitions.h"
 
 
-class GameWorld;
+class AbstractGameWorld;
 
 
 
 class AbstractGameObject
 {
 protected:
-	GameWorld & world;
+	AbstractGameWorld & world;
 public:
-	AbstractGameObject(GameWorld & w) : world(w) { };
+	AbstractGameObject(AbstractGameWorld & w) : world(w) { };
 	virtual void Do() = 0;
 };
 

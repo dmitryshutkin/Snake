@@ -1,6 +1,6 @@
 ﻿#include "Border.h"
 
-#include "GameWorld.h"
+#include "AbstractGameWorld.h"
 
 
 void Border::newBorder()

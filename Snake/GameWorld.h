@@ -3,6 +3,7 @@
 
 #include "MainDefinitions.h"
 
+#include "AbstractGameWorld.h"
 #include "AbstractView.h"
 #include "AbstractController.h"
 
@@ -17,7 +18,7 @@
 
 
 
-class GameWorld
+class GameWorld : protected AbstractGameWorld
 {
 
 public:
@@ -35,9 +36,8 @@ private:
 	AbstractView & view;
 	const AbstractController & controller;
 
-	Map map;
 	
-	void Interact(AbstractGameObject &, AbstractGameObject &);
+	virtual void Interact(AbstractGameObject &, AbstractGameObject &);
 	
 	size_t score = 1;
 

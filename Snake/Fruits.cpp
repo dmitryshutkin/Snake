@@ -1,6 +1,6 @@
 ﻿#include "Fruits.h"
 
-#include "GameWorld.h"
+#include "AbstractGameWorld.h"
 
 #include <ctime>
 #include <cstdlib>

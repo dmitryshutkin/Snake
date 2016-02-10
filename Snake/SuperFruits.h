@@ -8,7 +8,7 @@
 class SuperFruits : public AbstractGameObject
 {
 public:
-	SuperFruits(GameWorld & w) : AbstractGameObject(w) { };
+	SuperFruits(AbstractGameWorld & w) : AbstractGameObject(w) { };
 	virtual void Do() { };
 	void NewFruit();
 
