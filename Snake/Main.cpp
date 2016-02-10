@@ -1,11 +1,8 @@
 ﻿#include "MainDefinitions.h"
+
 #include "GameWorld.h"
 #include "ConsoleView.h"
 #include "ConsoleController.h"
-
-#include <iostream>
-#include <conio.h>
-#include <windows.h>
 
 
 

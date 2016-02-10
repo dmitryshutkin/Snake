@@ -2,7 +2,7 @@
 #define MainDefinitions_h__
 
 
-//#define DEBUG
+#define DEBUG
 //#define INNER_BARRIER
 
 
@@ -28,7 +28,7 @@ const size_t NumOfSuperFruits = 2;
 const size_t SuperFruitBorder = 3;
 const size_t NumOfSuperFruitGrows = 10;
 
-const size_t NumOfTurns = 2;
+const size_t NumOfTurns = 3;
 const size_t TurnBorder = 7;
 
  

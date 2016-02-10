@@ -19,8 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{49B3D280-5699-4143-B3A4-C064B597B57D}</ProjectGuid>
-    <RootNamespace>Snake</RootNamespace>
+    <ProjectGuid>{C1F94A02-F9B2-4550-9254-434E85BF4B11}</ProjectGuid>
+    <RootNamespace>UnitTest</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -81,6 +81,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>..\Snake</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -110,32 +111,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Border.cpp" />
-    <ClCompile Include="ConsoleController.cpp" />
-    <ClCompile Include="Map.cpp" />
-    <ClCompile Include="Fruits.cpp" />
-    <ClCompile Include="GameWorld.cpp" />
-    <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Poisons.cpp" />
-    <ClCompile Include="Python.cpp" />
-    <ClCompile Include="SuperFruits.cpp" />
-    <ClCompile Include="Turns.cpp" />
-    <ClCompile Include="ConsoleView.cpp" />
+    <ProjectReference Include="..\Snake\Snake.vcxproj">
+      <Project>{49b3d280-5699-4143-b3a4-c064b597b57d}</Project>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AbstractController.h" />
-    <ClInclude Include="AbstractGameObject.h" />
-    <ClInclude Include="Border.h" />
-    <ClInclude Include="ConsoleController.h" />
-    <ClInclude Include="GameWorld.h" />
-    <ClInclude Include="Map.h" />
-    <ClInclude Include="Fruits.h" />
-    <ClInclude Include="MainDefinitions.h" />
-    <ClInclude Include="Poisons.h" />
-    <ClInclude Include="Python.h" />
-    <ClInclude Include="SuperFruits.h" />
-    <ClInclude Include="Turns.h" />
-    <ClInclude Include="AbstractView.h" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="TestMap.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="TestGameWorld.h" />
+    <ClInclude Include="TestMap.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

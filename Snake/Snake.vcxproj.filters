@@ -50,9 +50,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="GameWorld.h">
-      <Filter>Заголовочные файлы</Filter>
-    </ClInclude>
     <ClInclude Include="Python.h">
       <Filter>Заголовочные файлы</Filter>
     </ClInclude>
@@ -77,9 +74,6 @@
     <ClInclude Include="ConsoleController.h">
       <Filter>Заголовочные файлы</Filter>
     </ClInclude>
-    <ClInclude Include="ConsoleView.h">
-      <Filter>Заголовочные файлы</Filter>
-    </ClInclude>
     <ClInclude Include="Fruits.h">
       <Filter>Заголовочные файлы</Filter>
     </ClInclude>
@@ -90,6 +84,9 @@
       <Filter>Заголовочные файлы</Filter>
     </ClInclude>
     <ClInclude Include="Turns.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="GameWorld.h">
       <Filter>Заголовочные файлы</Filter>
     </ClInclude>
   </ItemGroup>

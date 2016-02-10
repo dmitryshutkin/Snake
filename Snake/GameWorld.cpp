@@ -1,7 +1,7 @@
 ﻿#include "GameWorld.h"
 
-#include <iostream>
 #include <windows.h>
+#include <typeinfo>
 
 
 using namespace std;
