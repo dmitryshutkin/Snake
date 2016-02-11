@@ -1,6 +1,6 @@
 ﻿#include "Map.h"
 
-#include "GameWorld.h"
+#include "AbstractGameWorld.h"
 
 
 using namespace std;

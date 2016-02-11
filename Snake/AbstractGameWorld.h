@@ -7,7 +7,7 @@
 class AbstractGameWorld
 {
 public:
-	virtual void Interact(AbstractGameObject &, AbstractGameObject &) = 0;
+	virtual void Interact(AbstractGameObject &, AbstractGameObject &) { throw; };
 	Map map;
 
 };

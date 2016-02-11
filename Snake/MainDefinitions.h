@@ -2,7 +2,7 @@
 #define MainDefinitions_h__
 
 
-//#define DEBUG
+#define DEBUG
 #define INNER_BARRIER
 
 

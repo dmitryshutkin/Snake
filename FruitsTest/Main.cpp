@@ -1,6 +1,6 @@
 #include "MainDefinitions.h"
 
-#include "TestGameWorld.h"
+#include "FruitsTestGameWorld.h"
 
 #include <iostream>
 
@@ -8,14 +8,25 @@ using namespace std;
 
 
 
-int main(int argc, char * * argv)
+int main()
 {
-	TestGameWorld world;
+	FruitsTestGameWorld world;
 
-	if (world.FruitsSouldCreateNewFruit())
-		cout << "New fruit created - Ok" << endl;
-	else
-		cout << "New fruit created - Fail!" << endl;
+	size_t numOfTests = sizeX * sizeY;
+	size_t count = 0;
+
+	for (size_t i = 0; i < numOfTests; ++i)
+	{
+		cout << "Test: " << i << " - ";
+		if (world.FruitsSouldCreateNewFruit())
+		{
+			++count;
+			cout << "success" << endl;
+		}
+		else
+			cout << "fail" << endl;
+	}
+	cout << "Number of success tests " << count << " of " << numOfTests << endl;
 	cin.get();
 
 	return 0;

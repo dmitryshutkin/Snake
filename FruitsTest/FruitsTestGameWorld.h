@@ -1,5 +1,5 @@
-﻿#ifndef TestGameWorld_h__
-#define TestGameWorld_h__
+﻿#ifndef FruitsTestGameWorld_h__
+#define FruitsTestGameWorld_h__
 
 #include "MainDefinitions.h"
 
@@ -10,7 +10,7 @@
 
 
 
-class TestGameWorld : protected AbstractGameWorld
+class FruitsTestGameWorld : protected AbstractGameWorld
 {
 public:
 	bool FruitsSouldCreateNewFruit();
@@ -24,4 +24,4 @@ private:
 
 
 
-#endif // TestGameWorld_h__
+#endif // FruitsTestGameWorld_h__

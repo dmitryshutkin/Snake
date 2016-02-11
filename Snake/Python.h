@@ -23,7 +23,7 @@ class Python : public AbstractGameObject
 
 public:
 
-	Python(AbstractGameWorld & w) : AbstractGameObject(w) { body.push_front(PlainVector(x, y)); };
+	Python(AbstractGameWorld & w);
 
 	virtual void Do();
 	   

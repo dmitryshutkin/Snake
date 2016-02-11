@@ -1,8 +1,20 @@
 ﻿#include "Python.h"
 
-#include "GameWorld.h"
+#include "AbstractGameWorld.h"
 
 #include <typeinfo>
+
+#ifdef DEBUG
+#include "Border.h"
+#endif
+
+
+
+Python::Python(AbstractGameWorld & w) : AbstractGameObject(w) 
+{ 
+	body.push_front(PlainVector(x, y)); 
+	*(world.map(x, y)) = this; 
+};
 
 
 
