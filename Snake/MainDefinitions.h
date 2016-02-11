@@ -2,8 +2,8 @@
 #define MainDefinitions_h__
 
 
-#define DEBUG
-//#define INNER_BARRIER
+//#define DEBUG
+#define INNER_BARRIER
 
 
 enum Size { sizeX = 30, sizeY = 20 };

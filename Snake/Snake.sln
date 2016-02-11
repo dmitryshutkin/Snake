@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Snake", "Snake.vcxproj", "{49B3D280-5699-4143-B3A4-C064B597B57D}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UnitTest", "..\UnitTest\UnitTest.vcxproj", "{C1F94A02-F9B2-4550-9254-434E85BF4B11}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FruitsTest", "..\FruitsTest\UnitTest.vcxproj", "{C1F94A02-F9B2-4550-9254-434E85BF4B11}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

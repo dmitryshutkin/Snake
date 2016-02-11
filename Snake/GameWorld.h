@@ -24,15 +24,15 @@ class GameWorld : protected AbstractGameWorld
 public:
 
 	GameWorld(AbstractView &, const AbstractController &);
-	GameWorld & operator<< (int);                  // keyboard stream reading
 	void Be();                                     // Game loop
+
+private:
+
+	GameWorld & operator<< (int);                  // keyboard stream reading
 	bool Do();                                     // Game step, returns false to exit the game loop
 	bool operator() ();                            
 	operator bool() const;                         // returns false to exit the program
 	const size_t GetScore() { return score; };
-
-private:
-
 	AbstractView & view;
 	const AbstractController & controller;
 

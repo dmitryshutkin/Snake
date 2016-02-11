@@ -22,6 +22,7 @@
     <ProjectGuid>{C1F94A02-F9B2-4550-9254-434E85BF4B11}</ProjectGuid>
     <RootNamespace>UnitTest</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <ProjectName>FruitsTest</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -110,11 +111,6 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Snake\Snake.vcxproj">
-      <Project>{49b3d280-5699-4143-b3a4-c064b597b57d}</Project>
-    </ProjectReference>
-  </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Snake\Fruits.cpp" />
     <ClCompile Include="..\Snake\Map.cpp" />

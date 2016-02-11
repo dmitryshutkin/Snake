@@ -12,11 +12,10 @@ int main(int argc, char * * argv)
 {
 	TestGameWorld world;
 
-	cout << "Objects created" << endl;
 	if (world.FruitsSouldCreateNewFruit())
-		cout << "New fruit created " << endl;
+		cout << "New fruit created - Ok" << endl;
 	else
-		cout << "New fruit not created " << endl;
+		cout << "New fruit created - Fail!" << endl;
 	cin.get();
 
 	return 0;
