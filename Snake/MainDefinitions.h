@@ -21,14 +21,14 @@ const size_t SLEEP_TIME = 100;
 const size_t NumOfPoisons = 3;
 const size_t PoisonBorder = 3;
 
-const size_t NumOfFruits = 5;
+const size_t NumOfFruits = 3;
 const size_t FruitBorder = 3;
 
 const size_t NumOfSuperFruits = 2;
 const size_t SuperFruitBorder = 3;
 const size_t NumOfSuperFruitGrows = 10;
 
-const size_t NumOfTurns = 3;
+const size_t NumOfTurns = 0;
 const size_t TurnBorder = 7;
 
  

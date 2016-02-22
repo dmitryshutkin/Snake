@@ -2,9 +2,9 @@
 
 #include "AbstractGameWorld.h"
 
-#include <typeinfo>
 
 #ifdef DEBUG
+#include <typeinfo>
 #include "Border.h"
 #endif
 
@@ -58,7 +58,7 @@ void Python::Die()
 
 
 
-void Python::BeGrowing()
+void Python::Grow()
 {
 	growing = true;
 }
@@ -106,6 +106,8 @@ void Python::ToLeft()
 		dy = 0;
 	}
 }
+
+
 
 void Python::Turn()
 {

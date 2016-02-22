@@ -13,6 +13,7 @@ int main()
 	const ConsoleController consoleController;
 
 	do {
+
 		// Create the World!!!
 		GameWorld gameWorld(consoleView, consoleController);
 

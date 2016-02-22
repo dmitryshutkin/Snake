@@ -33,7 +33,7 @@ public:
 	void ToLeft();
 	void Turn();
 	
-	void BeGrowing();
+	void Grow();
 	void Shrink();
 	void Die();
 

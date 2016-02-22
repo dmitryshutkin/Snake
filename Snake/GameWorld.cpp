@@ -82,7 +82,7 @@ bool GameWorld::Do()
 	if (numOfGrows > 0)
 	{
 		++score;
-		Pete.BeGrowing();
+		Pete.Grow();
 		--numOfGrows;
 	}
 	Pete.Do();
@@ -121,7 +121,7 @@ void GameWorld::Interact(Python & aggressor, Fruits & victim)
 	++score;
 	if (aggressor.GetGrowing())
 		++numOfGrows;
-	aggressor.BeGrowing();
+	aggressor.Grow();
 	victim.NewFruit();
 }
 
@@ -133,7 +133,7 @@ void GameWorld::Interact(Python & aggressor, SuperFruits & victim)
 	numOfGrows += NumOfSuperFruitGrows - 1;
 	if (aggressor.GetGrowing())
 		++numOfGrows;
-	aggressor.BeGrowing();
+	aggressor.Grow();
 	victim.NewFruit();
 
 }

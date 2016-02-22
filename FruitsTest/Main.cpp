@@ -12,21 +12,21 @@ int main()
 {
 	FruitsTestGameWorld world;
 
-	size_t numOfTests = sizeX * sizeY;
-	size_t count = 0;
+	size_t numOfTests = sizeX * sizeY / 4;
+	size_t countOfSuccess = 0;
 
 	for (size_t i = 0; i < numOfTests; ++i)
 	{
-		cout << "Test: " << i << " - ";
+		cout << "Test " << i << " - ";
 		if (world.FruitsSouldCreateNewFruit())
 		{
-			++count;
+			++countOfSuccess;
 			cout << "success" << endl;
 		}
 		else
 			cout << "fail" << endl;
 	}
-	cout << "Number of success tests " << count << " of " << numOfTests << endl;
+	cout << "Number of success " << countOfSuccess << " of " << numOfTests << " tests" << endl;
 	cin.get();
 
 	return 0;
