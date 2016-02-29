@@ -10,6 +10,14 @@
 
 
 
+SuperFruits::SuperFruits(AbstractGameWorld & w) : AbstractGameObject(w)
+{
+	for (size_t i = 0; i < NumOfSuperFruits; ++i)
+		NewFruit();
+}
+
+
+
 void SuperFruits::NewFruit()
 {
 	size_t x, y;

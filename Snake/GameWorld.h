@@ -7,7 +7,8 @@
 #include "AbstractView.h"
 #include "AbstractController.h"
 
-#include "Map.h"
+#include <list>
+
 
 #include "Border.h"
 #include "Fruits.h"
@@ -24,6 +25,7 @@ class GameWorld : protected AbstractGameWorld
 public:
 
 	GameWorld(AbstractView &, const AbstractController &);
+	~GameWorld();
 	void Be();                                     // Game loop
 
 private:
@@ -37,17 +39,31 @@ private:
 	const AbstractController & controller;
 
 	
-	virtual void Interact(AbstractGameObject &, AbstractGameObject &);
 	
 	size_t score = 1;
 
-	Border border = Border(*this); friend Border;
-	Fruits fruits = Fruits(*this);	friend Fruits;
-	SuperFruits superFruits = SuperFruits(*this); friend SuperFruits;
-	Poisons poisons = Poisons(*this); friend Poisons;
-	Turns turns = Turns(*this); friend Turns;
-
 	Python Pete = Python(*this); friend Python;    // By the way, his name is Pete	
+	Border border = Border(*this); friend Border;
+
+	friend AbstractGameObject;
+	std::list<AbstractGameObject *> gameObjects;
+
+	//TODO Check the possibility of friend definitions deleting 
+	friend Fruits;
+	friend SuperFruits; 
+	friend Poisons;
+	friend Turns;
+
+
+	////TODO delete objects
+	//Fruits fruits = Fruits(*this);	
+	//SuperFruits superFruits = SuperFruits(*this); 
+	//Poisons poisons = Poisons(*this);
+	//Turns turns = Turns(*this); 
+
+
+	virtual void Interact(AbstractGameObject &, AbstractGameObject &);
+
 	void Interact(Python &, Border &);
 	void Interact(Python &, Fruits &);
 	void Interact(Python &, SuperFruits &);

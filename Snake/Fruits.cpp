@@ -8,6 +8,14 @@
 
 
 
+Fruits::Fruits(AbstractGameWorld & w) : AbstractGameObject(w) 
+{
+	for (size_t i = 0; i < NumOfFruits; ++i)
+		NewFruit();
+}
+
+
+
 void Fruits::NewFruit()
 {
 	size_t x, y;

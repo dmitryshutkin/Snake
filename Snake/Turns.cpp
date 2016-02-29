@@ -7,6 +7,12 @@
 
 
 
+Turns::Turns(AbstractGameWorld & w) : AbstractGameObject(w)
+{
+	for (size_t i = 0; i < NumOfTurns; ++i)
+		NewTurn();
+}
+
 void Turns::NewTurn()
 {
 	size_t x, y;

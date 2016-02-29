@@ -10,7 +10,7 @@
 class Border : public AbstractGameObject
 {
 public:
-	Border(AbstractGameWorld & w) : AbstractGameObject(w) { };
+	Border(AbstractGameWorld & w) : AbstractGameObject(w) { newBorder(); };
 	virtual void Do() { }; 
 	void newBorder();
 };

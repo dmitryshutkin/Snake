@@ -7,6 +7,14 @@
 
 
 
+Poisons::Poisons(AbstractGameWorld & w) : AbstractGameObject(w)
+{
+	for (size_t i = 0; i < NumOfPoisons; ++i)
+		NewPoison();
+}
+
+
+
 void Poisons::NewPoison()
 {
 	size_t x, y;

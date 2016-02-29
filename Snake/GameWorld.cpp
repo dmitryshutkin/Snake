@@ -11,18 +11,24 @@ using namespace std;
 GameWorld::GameWorld(AbstractView & v, const AbstractController & c) : view(v), controller(c)
 {
 	view.SetMap(&map);
-	size_t i;
-	border.newBorder();
-	for (i = 0; i < NumOfFruits; ++i)
-		fruits.NewFruit();
-	for (i = 0; i < NumOfPoisons; ++i)
-		poisons.NewPoison();
-	for (i = 0; i < NumOfTurns; ++i)
-		turns.NewTurn();
-	for (i = 0; i < NumOfSuperFruits; ++i)
-		superFruits.NewFruit();
+
+	gameObjects.push_back(new Fruits(*this));
+	gameObjects.push_back(new Poisons(*this));
+	gameObjects.push_back(new Turns(*this));
+	gameObjects.push_back(new SuperFruits(*this));
 
 	view.Redraw();
+}
+
+
+
+GameWorld::~GameWorld()
+{
+	// Deleting gameWorld objects from heap
+	for (const auto & obj : gameObjects)
+		delete obj;
+	// Deleting pointers
+	gameObjects.clear();
 }
 
 
@@ -75,10 +81,11 @@ void GameWorld::Be()
 bool GameWorld::Do()
 {
 	// Game step
-	// Object activity
+	// Objects activity
+	for (const auto & obj : gameObjects)
+		obj->Do();
+	// Main objects activity
 	border.Do();
-	fruits.Do();
-	poisons.Do();
 	if (numOfGrows > 0)
 	{
 		++score;
@@ -86,7 +93,6 @@ bool GameWorld::Do()
 		--numOfGrows;
 	}
 	Pete.Do();
-	superFruits.Do();
 	// Redraw the scene
 	view.Redraw();
 	// Check for being alive and return the state
@@ -105,6 +111,27 @@ bool GameWorld::operator()()
 GameWorld::operator bool() const
 {
 	return Pete.GetAlive();
+}
+
+
+
+void GameWorld::Interact(AbstractGameObject & aggressor, AbstractGameObject & victim)
+{
+	if (typeid(aggressor) == typeid(Python))
+		if (typeid(victim) == typeid(Python))
+			Interact(dynamic_cast<Python &>(aggressor), dynamic_cast<Python &>(victim));
+		else if (typeid(victim) == typeid(Border))
+			Interact(dynamic_cast<Python &>(aggressor), dynamic_cast<Border &>(victim));
+		else if (typeid(victim) == typeid(Fruits))
+			Interact(dynamic_cast<Python &>(aggressor), dynamic_cast<Fruits &>(victim));
+		else if (typeid(victim) == typeid(SuperFruits))
+			Interact(dynamic_cast<Python &>(aggressor), dynamic_cast<SuperFruits &>(victim));
+		else if (typeid(victim) == typeid(Poisons))
+			Interact(dynamic_cast<Python &>(aggressor), dynamic_cast<Poisons &>(victim));
+		else if (typeid(victim) == typeid(Turns))
+			Interact(dynamic_cast<Python &>(aggressor), dynamic_cast<Turns &>(victim));
+		else if (typeid(victim) == typeid(Python))
+			Interact(dynamic_cast<Python &>(aggressor), dynamic_cast<Python &>(victim));
 }
 
 
@@ -172,28 +199,5 @@ void GameWorld::Interact(Python & aggressor, Python & victim)
 	victim.Die();
 	#endif
 }
-
-
-
-void GameWorld::Interact(AbstractGameObject & aggressor, AbstractGameObject & victim)
-{
-	if (typeid(aggressor) == typeid(Python))
-		if (typeid(victim) == typeid(Python))
-			Interact(dynamic_cast<Python &>(aggressor), dynamic_cast<Python &>(victim));
-		else if (typeid(victim) == typeid(Border))
-			Interact(dynamic_cast<Python &>(aggressor), dynamic_cast<Border &>(victim));
-		else if (typeid(victim) == typeid(Fruits))
-			Interact(dynamic_cast<Python &>(aggressor), dynamic_cast<Fruits &>(victim));
-		else if (typeid(victim) == typeid(SuperFruits))
-			Interact(dynamic_cast<Python &>(aggressor), dynamic_cast<SuperFruits &>(victim));
-		else if (typeid(victim) == typeid(Poisons))
-			Interact(dynamic_cast<Python &>(aggressor), dynamic_cast<Poisons &>(victim));
-		else if (typeid(victim) == typeid(Turns))
-			Interact(dynamic_cast<Python &>(aggressor), dynamic_cast<Turns &>(victim));
-		else if (typeid(victim) == typeid(Python))
-			Interact(dynamic_cast<Python &>(aggressor), dynamic_cast<Python &>(victim));
-
-}
-
 
 

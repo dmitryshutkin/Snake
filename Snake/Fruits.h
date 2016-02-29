@@ -10,7 +10,7 @@
 class Fruits : public AbstractGameObject
 {
 public:
-	Fruits(AbstractGameWorld & w) : AbstractGameObject(w) { };
+	Fruits(AbstractGameWorld & w);
 	virtual void Do() { };
 	void NewFruit();
 };
