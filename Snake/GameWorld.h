@@ -38,28 +38,12 @@ private:
 	AbstractView & view;
 	const AbstractController & controller;
 
-	
-	
 	size_t score = 1;
 
-	Python Pete = Python(*this); friend Python;    // By the way, his name is Pete	
-	Border border = Border(*this); friend Border;
+	Python Pete = Python(*this);                   // By the way, his name is Pete	
+	Border border = Border(*this);
 
-	friend AbstractGameObject;
 	std::list<AbstractGameObject *> gameObjects;
-
-	//TODO Check the possibility of friend definitions deleting 
-	friend Fruits;
-	friend SuperFruits; 
-	friend Poisons;
-	friend Turns;
-
-
-	////TODO delete objects
-	//Fruits fruits = Fruits(*this);	
-	//SuperFruits superFruits = SuperFruits(*this); 
-	//Poisons poisons = Poisons(*this);
-	//Turns turns = Turns(*this); 
 
 
 	virtual void Interact(AbstractGameObject &, AbstractGameObject &);

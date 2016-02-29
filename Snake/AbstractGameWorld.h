@@ -8,8 +8,6 @@ class AbstractGameWorld
 {
 public:
 	virtual void Interact(AbstractGameObject &, AbstractGameObject &) = 0;
-//protected:
 	Map map;
-
 }; 
 
