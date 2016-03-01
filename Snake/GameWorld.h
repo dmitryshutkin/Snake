@@ -43,7 +43,6 @@ private:
 
 	std::list<AbstractGameObject *> gameObjects;
 
-
 	virtual void Interact(AbstractGameObject &, AbstractGameObject &);
 
 	void Interact(Python &, Border &);
