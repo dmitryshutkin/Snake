@@ -16,6 +16,9 @@ GameWorld::GameWorld(AbstractView & v, const AbstractController & c) : view(v), 
 	gameObjects.push_back(new Poisons(*this));
 	gameObjects.push_back(new Turns(*this));
 	gameObjects.push_back(new SuperFruits(*this));
+//	gameObjects.push_back(new Python(*this));
+	gameObjects.push_back(new Border(*this));
+
 
 	view.Redraw();
 }
@@ -81,11 +84,7 @@ void GameWorld::Be()
 bool GameWorld::Do()
 {
 	// Game step
-	// Objects activity
-	for (const auto & obj : gameObjects)
-		obj->Do();
 	// Main objects activity
-	border.Do();
 	if (numOfGrows > 0)
 	{
 		++score;
@@ -93,6 +92,9 @@ bool GameWorld::Do()
 		--numOfGrows;
 	}
 	Pete.Do();
+	// Other objects activity
+	for (const auto & obj : gameObjects)
+		obj->Do();
 	// Redraw the scene
 	view.Redraw();
 	// Check for being alive and return the state

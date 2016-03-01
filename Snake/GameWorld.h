@@ -7,15 +7,14 @@
 #include "AbstractView.h"
 #include "AbstractController.h"
 
-#include <list>
-
-
 #include "Border.h"
 #include "Fruits.h"
 #include "Poisons.h"
 #include "Turns.h"
 #include "Python.h"
 #include "SuperFruits.h"
+
+#include <list>
 
 
 
@@ -41,7 +40,6 @@ private:
 	size_t score = 1;
 
 	Python Pete = Python(*this);                   // By the way, his name is Pete	
-	Border border = Border(*this);
 
 	std::list<AbstractGameObject *> gameObjects;
 
