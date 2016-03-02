@@ -73,7 +73,7 @@ void GameWorld::Be()
 		if (controller.KeyHit())				    // If any key is pressed
 			*this << controller.GetCommand();		// Send message from controller into the Game World
 		Sleep(SLEEP_TIME);
-	} while (this->Do());				            // Do while the World state is true
+	} while (Do());				            // Do while the World state is true
 
 	// Completion
 	view.PrintResult(score);

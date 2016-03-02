@@ -1,7 +1,13 @@
 ## Snake
 
 Simple console game
+  
+    
+  
 
-Use arrow keys to control
 
-![UML class diagram](https://www.lucidchart.com/publicSegments/view/56d2dc7a-242f-4588-8392-4b3cf0d45a69/image.png)
+
+[UML class diagram](https://goo.gl/8X5Pju)
+
+
+![UML class diagram](https://www.lucidchart.com/publicSegments/view/162cd4cf-8c50-448d-98a8-7cfc832d0b71/image.png)
