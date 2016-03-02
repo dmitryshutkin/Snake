@@ -16,7 +16,6 @@ GameWorld::GameWorld(AbstractView & v, const AbstractController & c) : view(v), 
 	gameObjects.push_back(new Poisons(*this));
 	gameObjects.push_back(new Turns(*this));
 	gameObjects.push_back(new SuperFruits(*this));
-//	gameObjects.push_back(new Python(*this));
 	gameObjects.push_back(new Border(*this));
 
 
