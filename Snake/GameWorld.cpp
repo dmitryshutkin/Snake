@@ -83,6 +83,7 @@ void GameWorld::Be()
 bool GameWorld::Do()
 {
 	// Game step
+
 	// Main objects activity
 	if (numOfGrows > 0)
 	{
@@ -91,13 +92,17 @@ bool GameWorld::Do()
 		--numOfGrows;
 	}
 	Pete.Do();
+
 	// Other objects activity
 	for (const auto & obj : gameObjects)
 		obj->Do();
+
 	// Redraw the scene
 	view.Redraw();
+
 	// Check for being alive and return the state
 	return Pete.GetAlive();
+
 }
 
 
