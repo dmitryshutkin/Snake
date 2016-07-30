@@ -2,7 +2,7 @@
 #define MainDefinitions_h__
 
 
-#define DEBUG
+//#define DEBUG
 #define INNER_BARRIER
 
 
@@ -18,7 +18,7 @@ enum Symb { BORDER_SYMB = '#', PYTHON_SYMB = '@', FRUIT_SYMB = 'F', POISON_SYMB 
 const size_t SLEEP_TIME = 100;
 
 
-const size_t NumOfPoisons = 3;
+const size_t NumOfPoisons = 1;
 const size_t PoisonBorder = 3;
 
 const size_t NumOfFruits = 4;
